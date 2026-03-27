@@ -8,56 +8,81 @@
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
-    background-color: var(--crema);
     color: var(--texto);
 }
 
 .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-header {
-    padding: 60px 20px;
-    text-align: center;
+/* --------------------------------- */
+/* Estilos Página de Inicio (Landing)*/
+/* --------------------------------- */
+body.home {
     background-color: var(--crema);
-}
-
-h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
-    color: var(--verde);
-    margin: 0;
-    letter-spacing: 3px;
-}
-
-h1 span { font-weight: 300; font-size: 1.8rem; }
-
-.tagline {
-    font-size: 0.9rem;
-    letter-spacing: 5px;
-    color: var(--trigo);
-    margin-top: 10px;
-}
-
-.hero {
-    background-color: var(--verde);
-    color: white;
-    padding: 100px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     text-align: center;
 }
 
-.hero h2 { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 10px; }
+.main-container {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+}
+
+/* Imagen del Logo Central */
+.central-logo {
+    width: 100%;
+    max-width: 600px; /* Ajustá este tamaño si es necesario */
+    height: auto;
+    margin-bottom: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .btn-primary {
     display: inline-block;
     background-color: var(--trigo);
     color: white;
-    padding: 18px 40px;
+    padding: 20px 50px;
     text-decoration: none;
-    margin-top: 30px;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.8rem;
-    font-weight: bold;
+    letter-spacing: 3px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: 0.3s;
+    border: 2px solid var(--trigo);
 }
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--trigo);
+}
+
+/* --------------------------------- */
+/* Estilos Página del Menú */
+/* --------------------------------- */
+body.menu-page {
+    background-color: var(--crema);
+}
+
+.menu-header {
+    background-color: var(--verde);
+    padding: 20px 0;
+    text-align: center;
+}
+
+.logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--crema);
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+.logo-text span { font-weight: 300; font-size: 1.2rem; }
 
 .section-title {
     text-align: center;
@@ -96,14 +121,38 @@ li strong { color: var(--verde); display: block; font-size: 0.75rem; text-transf
     text-align: center;
     margin: 50px auto;
     padding: 25px;
-    background-color: #fff;
-    border: 1px dashed var(--trigo);
+    background-color: #f0f4f1; /* Verde muy pálido */
+    border-left: 4px solid var(--verde);
     max-width: 700px;
 }
 
-footer { text-align: center; padding: 60px; font-size: 0.8rem; color: #999; }
+.cta-container { text-align: center; margin-top: 50px; margin-bottom: 50px; }
 
+.btn-whatsapp {
+    display: inline-block;
+    background-color: var(--verde);
+    color: white;
+    padding: 18px 35px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.3s;
+    border: 1px solid var(--verde);
+}
+
+.btn-whatsapp:hover {
+    background-color: transparent;
+    color: var(--verde);
+}
+
+footer { text-align: center; padding: 40px; font-size: 0.8rem; color: #999; width: 100%; position: absolute; bottom: 0; left: 0;}
+
+/* Responsividad para Mobile */
 @media (max-width: 768px) {
-    h1 { font-size: 2.5rem; }
+    .central-logo { max-width: 90%; margin-bottom: 30px; }
     .hero h2 { font-size: 2rem; }
+    .btn-primary { padding: 15px 30px; font-size: 0.8rem; }
+    footer { position: relative; padding: 20px; }
+    body.home { height: auto; padding-top: 50px; }
 }
