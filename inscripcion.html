@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscripción Escolar - Cuchara & Co.</title>
+    <title>Inscripción - Cuchara & Co.</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .form-section { border-bottom: 1px solid var(--trigo); margin-bottom: 30px; padding-bottom: 10px; }
+        .form-section { border-bottom: 1px solid var(--trigo); margin-bottom: 30px; padding-bottom: 10px; margin-top: 20px; }
         .form-section h3 { font-family: 'Playfair Display', serif; color: var(--verde); text-transform: uppercase; font-size: 1.1rem; letter-spacing: 1px; }
         .form-group { text-align: left; margin-bottom: 15px; }
         label { display: block; font-weight: 600; font-size: 0.75rem; margin-bottom: 5px; color: #555; text-transform: uppercase; }
         input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; font-family: 'Montserrat', sans-serif; background: #fff; border-radius: 2px; }
         .row { display: flex; gap: 15px; }
         .row .form-group { flex: 1; }
+        .hidden { display: none; }
         @media (max-width: 600px) { .row { flex-direction: column; gap: 0; } }
     </style>
 </head>
@@ -24,59 +25,70 @@
     </header>
 
     <main class="container">
-        <h2 class="section-title">Formulario de Inscripción</h2>
+        <h2 class="section-title">Alta de Servicio</h2>
         
         <div class="menu-grid" style="grid-template-columns: 1fr; max-width: 750px; margin-top: 0;">
             <div class="menu-card" style="text-align: left;">
                 <form id="inscriptionForm" action="https://formspree.io/f/xdapgdjo" method="POST">
                     
-                    <div class="form-section"><h3>Datos del Tutor / Responsable</h3></div>
+                    <div class="form-section"><h3>Tipo de Servicio</h3></div>
+                    <div class="form-group">
+                        <label>¿Qué servicio deseas contratar?</label>
+                        <select name="Tipo_Servicio" id="selectorServicio" required onchange="toggleCampos()">
+                            <option value="Escolar" selected>Servicio Escolar (Alumnos)</option>
+                            <option value="Particular">Servicio Particular (Adultos / Oficina)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-section"><h3>Datos del Cliente / Responsable</h3></div>
                     <div class="form-group">
                         <label>Nombre y Apellido</label>
-                        <input type="text" name="Tutor_Nombre" required placeholder="Nombre completo del responsable">
+                        <input type="text" name="Responsable_Nombre" required placeholder="Tu nombre completo">
                     </div>
                     <div class="row">
                         <div class="form-group">
-                            <label>Teléfono de contacto (WhatsApp)</label>
-                            <input type="tel" name="Tutor_Telefono" required placeholder="Ej: 11 3144-5518">
+                            <label>Teléfono (WhatsApp)</label>
+                            <input type="tel" name="Contacto_Telefono" required placeholder="Ej: 11 3144-5518">
                         </div>
                         <div class="form-group">
-                            <label>Dirección de entrega</label>
+                            <label>Dirección de Entrega</label>
                             <input type="text" name="Entrega_Direccion" required placeholder="Calle y altura">
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Localidad / Referencias</label>
-                        <input type="text" name="Entrega_Localidad" placeholder="Ej: Lanús - Timbre blanco">
+                        <input type="text" name="Entrega_Localidad" placeholder="Ej: Lanús - Referencias de entrega">
                     </div>
 
-                    <div class="form-section"><h3>Datos del Alumno</h3></div>
-                    <div class="form-group">
-                        <label>Nombre y Apellido del Alumno</label>
-                        <input type="text" name="Alumno_Nombre" required>
-                    </div>
-                    <div class="row">
+                    <div id="seccionAlumno">
+                        <div class="form-section"><h3>Datos del Alumno</h3></div>
                         <div class="form-group">
-                            <label>Colegio</label>
-                            <input type="text" name="Alumno_Colegio" required placeholder="Nombre de la institución">
+                            <label>Nombre y Apellido del Alumno</label>
+                            <input type="text" name="Alumno_Nombre" id="inputAlumnoNombre">
                         </div>
-                        <div class="form-group">
-                            <label>Año / Grado</label>
-                            <input type="text" name="Alumno_Grado" required placeholder="Ej: 4to Grado B">
+                        <div class="row">
+                            <div class="form-group">
+                                <label>Colegio</label>
+                                <input type="text" name="Alumno_Colegio" id="inputAlumnoColegio">
+                            </div>
+                            <div class="form-group">
+                                <label>Año / Grado</label>
+                                <input type="text" name="Alumno_Grado" id="inputAlumnoGrado">
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-section"><h3>Información Alimentaria (Importante)</h3></div>
+                    <div class="form-section"><h3>Información Alimentaria</h3></div>
                     <div class="form-group">
-                        <label>¿Posee alguna alergia diagnosticada?</label>
-                        <input type="text" name="Salud_Alergias" placeholder="Ej: Maní, Frutos secos, Pescado, o 'No'">
+                        <label>¿Alergias diagnosticadas?</label>
+                        <input type="text" name="Salud_Alergias" placeholder="Ej: Maní, Frutos secos, Pescado o 'No'">
                     </div>
                     <div class="form-group">
-                        <label>¿Posee intolerancia a algún ingrediente?</label>
-                        <input type="text" name="Salud_Intolerancias" placeholder="Ej: Lactosa, Gluten, o 'No'">
+                        <label>¿Intolerancias?</label>
+                        <input type="text" name="Salud_Intolerancias" placeholder="Ej: Lactosa, Gluten o 'No'">
                     </div>
                     <div class="form-group">
-                        <label>Observaciones o preferencias</label>
+                        <label>Observaciones</label>
                         <textarea name="Salud_Observaciones" rows="3" placeholder="Ej: No come cebolla, prefiere porciones pequeñas"></textarea>
                     </div>
 
@@ -86,20 +98,16 @@
                             <label>Plan Elegido</label>
                             <select name="Servicio_Plan">
                                 <option value="Promo Lanzamiento">Promo Lanzamiento ($5.000 x vianda)</option>
+                                <option value="Pack Semanal">Pack Semanal Particular</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Cantidad Semanal</label>
-                            <input type="number" name="Servicio_Cantidad" value="5" readonly>
+                            <label>Método de Pago</label>
+                            <select name="Servicio_Pago" required>
+                                <option value="Transferencia">Transferencia</option>
+                                <option value="Efectivo">Efectivo</option>
+                            </select>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Método de Pago</label>
-                        <select name="Servicio_Pago" required>
-                            <option value="" disabled selected>Seleccioná...</option>
-                            <option value="Transferencia">Transferencia</option>
-                            <option value="Efectivo">Efectivo</option>
-                        </select>
                     </div>
 
                     <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer; padding: 20px; margin-top: 20px;">
@@ -115,10 +123,32 @@
     </footer>
 
     <script>
+        function toggleCampos() {
+            const tipo = document.getElementById('selectorServicio').value;
+            const seccion = document.getElementById('seccionAlumno');
+            
+            // Campos de alumno
+            const nombre = document.getElementById('inputAlumnoNombre');
+            const colegio = document.getElementById('inputAlumnoColegio');
+            const grado = document.getElementById('inputAlumnoGrado');
+
+            if(tipo === 'Particular') {
+                seccion.classList.add('hidden');
+                // Quitamos el 'required' si es particular para que deje enviar el form
+                nombre.required = false; colegio.required = false; grado.required = false;
+            } else {
+                seccion.classList.remove('hidden');
+                nombre.required = true; colegio.required = true; grado.required = true;
+            }
+        }
+
+        // Ejecutar una vez al cargar por si acaso
+        toggleCampos();
+
         document.getElementById('inscriptionForm').onsubmit = function() {
-            const tutor = this.Tutor_Nombre.value;
-            const alumno = this.Alumno_Nombre.value;
-            const msg = `Hola Cuchara %26 Co! Soy ${tutor}, acabo de enviar la inscripción para el alumno ${alumno}.`;
+            const responsable = this.Responsable_Nombre.value;
+            const tipo = this.Tipo_Servicio.value;
+            const msg = `Hola Cuchara %26 Co! Soy ${responsable}, acabo de enviar mi inscripción para el servicio ${tipo}.`;
             
             setTimeout(() => {
                 window.open(`https://wa.me/5491131445518?text=${msg}`, '_blank');
