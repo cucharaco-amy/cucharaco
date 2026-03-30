@@ -1,17 +1,19 @@
 /* --- VARIABLES Y RESET --- */
 :root {
-    --verde: #1B3022;
-    --crema: #F9F7F2;
-    --trigo: #C5A059;
+    --verde: #1B3022; /* Verde Inglés */
+    --crema: #F9F7F2; /* Crema Papel */
+    --trigo: #C5A059; /* Dorado/Trigo */
     --texto: #333;
+    --wsapp: #25D366; /* Verde Oficial WhatsApp */
 }
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    margin: 0;
     font-family: 'Montserrat', sans-serif;
     background-color: var(--crema);
     color: var(--texto);
@@ -53,13 +55,14 @@ body.home {
     letter-spacing: 3px;
     font-weight: 600;
     font-size: 0.85rem;
-    transition: 0.3s;
+    transition: 0.3s ease;
     border: 2px solid var(--trigo);
 }
 
 .btn-primary:hover {
     background-color: transparent;
     color: var(--trigo);
+    transform: translateY(-3px);
 }
 
 /* --- ESTILOS PÁGINA DEL MENÚ (menu.html) --- */
@@ -88,12 +91,12 @@ body.home {
     margin: 60px 0 40px;
 }
 
-/* --- CUADRÍCULA SIMÉTRICA 2x2 --- */
+/* --- CUADRÍCULA SIMÉTRICA 2x2 (Alineación perfecta) --- */
 .menu-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Fuerza 2 columnas */
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas exactas */
     gap: 40px;
-    max-width: 900px;
+    max-width: 950px;
     margin: 0 auto 50px auto;
 }
 
@@ -104,6 +107,12 @@ body.home {
     box-shadow: 0 5px 15px rgba(0,0,0,0.02);
     display: flex;
     flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.menu-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
 }
 
 .menu-card h3 {
@@ -138,10 +147,11 @@ li strong {
     padding: 25px;
     background-color: #f0f4f1;
     border-left: 4px solid var(--verde);
-    max-width: 700px;
+    max-width: 750px;
+    font-style: italic;
 }
 
-/* --- BOTÓN WHATSAPP --- */
+/* --- BOTÓN WHATSAPP ACTIVADO --- */
 .cta-container { 
     text-align: center; 
     margin: 60px 0; 
@@ -151,44 +161,52 @@ li strong {
     display: inline-block;
     background-color: var(--verde);
     color: white;
-    padding: 18px 40px;
+    padding: 20px 45px;
     text-decoration: none;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
-    transition: 0.3s;
-    border: 1px solid var(--verde);
+    transition: 0.3s ease;
+    border: 2px solid var(--verde);
+    border-radius: 2px;
 }
 
 .btn-whatsapp:hover {
-    background-color: transparent;
-    color: var(--verde);
+    background-color: var(--wsapp); /* Color verde WhatsApp al pasar el mouse */
+    border-color: var(--wsapp);
+    color: white;
+    transform: scale(1.05);
 }
 
 /* --- FOOTER --- */
 footer { 
     text-align: center; 
-    padding: 40px; 
+    padding: 60px 20px; 
     font-size: 0.75rem; 
     color: #aaa; 
 }
 
-/* --- RESPONSIVIDAD (MOBILE) --- */
+/* --- RESPONSIVIDAD (MOBILE Y TABLET) --- */
 @media (max-width: 850px) {
     .menu-grid {
-        grid-template-columns: 1fr; /* Una sola columna en tablets y celulares */
-        gap: 20px;
+        grid-template-columns: 1fr; /* Una columna en pantallas chicas */
+        gap: 25px;
         max-width: 500px;
     }
 
-    .section-title { font-size: 2rem; }
+    .section-title { font-size: 2.2rem; }
     
     body.home { 
         height: auto; 
-        padding: 80px 0; 
+        padding: 80px 20px; 
     }
     
     .central-logo { 
-        max-width: 90%; 
+        max-width: 100%; 
+    }
+
+    .btn-primary {
+        padding: 15px 30px;
+        width: 100%;
     }
 }
