@@ -15,34 +15,65 @@
 
     <main class="container">
         <h2 class="section-title">Alta de Servicio</h2>
-        <p style="text-align: center; margin-bottom: 50px; color: #666; font-style: italic;">Seleccioná el tipo de servicio para completar tu inscripción.</p>
         
-        <div class="menu-grid">
-            <div class="menu-card" style="display: flex; flex-direction: column; justify-content: space-between; text-align: center;">
-                <div>
-                    <h3>Servicio Escolar</h3>
-                    <p style="font-size: 0.9rem; margin-bottom: 20px;">Exclusivo para alumnos. Incluye seguimiento nutricional y ficha de salud.</p>
-                </div>
-                <a href="LINK_AQUÍ" class="btn-primary" target="_blank">Inscripción Alumno</a>
-            </div>
+        <div class="menu-grid" style="grid-template-columns: 1fr; max-width: 600px;">
+            <div class="menu-card">
+                <h3>Formulario de Inscripción</h3>
+                <form id="inscriptionForm" action="https://formspree.io/f/palvez293@gmail.com" method="POST">
+                    
+                    <div style="text-align: left; margin-bottom: 15px;">
+                        <label>Tipo de Servicio:</label>
+                        <select name="servicio" required style="width: 100%; padding: 10px; margin-top: 5px;">
+                            <option value="Escolar">Servicio Escolar (Viandas Colegio)</option>
+                            <option value="Particular">Cliente Particular (Domicilio)</option>
+                        </select>
+                    </div>
 
-            <div class="menu-card" style="display: flex; flex-direction: column; justify-content: space-between; text-align: center;">
-                <div>
-                    <h3>Clientes Particulares</h3>
-                    <p style="font-size: 0.9rem; margin-bottom: 20px;">Viandas individuales para adultos o corporativos con entrega a domicilio.</p>
-                </div>
-                <a href="LINK_AQUÍ" class="btn-primary" target="_blank">Alta Particular</a>
+                    <div style="text-align: left; margin-bottom: 15px;">
+                        <label>Nombre Completo:</label>
+                        <input type="text" name="nombre" required style="width: 100%; padding: 10px; margin-top: 5px;">
+                    </div>
+
+                    <div style="text-align: left; margin-bottom: 15px;">
+                        <label>Teléfono de Contacto:</label>
+                        <input type="tel" id="userPhone" name="telefono" required style="width: 100%; padding: 10px; margin-top: 5px;">
+                    </div>
+
+                    <div style="text-align: left; margin-bottom: 15px;">
+                        <label>Detalles / Alergias:</label>
+                        <textarea name="mensaje" rows="4" style="width: 100%; padding: 10px; margin-top: 5px;" placeholder="Ej: Alérgico al maní, menú vegetariano, etc."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer;">Enviar Inscripción</button>
+                </form>
             </div>
         </div>
 
         <div class="cta-container">
-            <a href="https://wa.me/54911XXXXXXXX" class="btn-whatsapp" target="_blank">Soporte por WhatsApp</a>
+            <a href="https://wa.me/5491131445518" class="btn-whatsapp" target="_blank">Consultar por WhatsApp</a>
         </div>
     </main>
 
     <footer>
         <p>&copy; 2026 Cuchara & Co. - Buenos Aires, Argentina</p>
     </footer>
+
+    <script>
+        const form = document.getElementById('inscriptionForm');
+        
+        form.addEventListener('submit', function(e) {
+            // El formulario se enviará a Formspree por el "action"
+            // Pero preparamos el mensaje de WhatsApp para que el usuario lo mande después
+            const nombre = form.nombre.value;
+            const servicio = form.servicio.value;
+            const msg = `Hola Cuchara & Co! Soy ${nombre}, acabo de enviar mi inscripción para el servicio ${servicio}.`;
+            
+            // Abrimos WhatsApp en una ventana nueva después de un breve delay
+            setTimeout(() => {
+                window.open(`https://wa.me/5491131445518?text=${encodeURIComponent(msg)}`, '_blank');
+            }, 1000);
+        });
+    </script>
 
 </body>
 </html>
