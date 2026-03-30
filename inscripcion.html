@@ -29,7 +29,7 @@
         
         <div class="menu-grid" style="grid-template-columns: 1fr; max-width: 750px; margin-top: 0;">
             <div class="menu-card" style="text-align: left;">
-                <form id="inscriptionForm" action="https://script.google.com/macros/s/AKfycbz4MXuDu6ZQ9lK4POuoLJ2Pwr7bPc94JK7Hx_syrcvLe-cWy6y-bzu_ixS84lWnFCaT/exec" method="POST">
+                <form id="inscriptionForm" action="https://script.google.com/macros/s/AKfycbzTx5zzmG9l5FCvVmlwVcjUR9sSFGEtjv17NuXRT1SfaXzR00ps4qnIiFoPbfG_Gr3L/exec" method="POST">
                     
                     <div class="form-section"><h3>Tipo de Servicio</h3></div>
                     <div class="form-group">
@@ -123,45 +123,55 @@
     </footer>
 
     <script>
-    const form = document.getElementById('inscriptionForm');
-    
-    form.onsubmit = function(e) {
-        // 1. Capturamos los datos necesarios para el mensaje
-        const responsable = this.Responsable_Nombre.value;
-        const tipo = this.Tipo_Servicio.value;
-        const telefono = this.Contacto_Telefono.value;
+    // ESTE ES EL BLOQUE QUE TENÉS QUE REEMPLAZAR COMPLETAMENTE
+    document.getElementById('inscriptionForm').onsubmit = function(e) {
+        e.preventDefault();
         
-        // 2. Armamos el mensaje para WhatsApp (con formato más lindo)
-        const mensajeWS = `*Nueva Inscripción - Cuchara %26 Co*%0A` +
-                          `--------------------------------%0A` +
-                          `*Cliente:* ${responsable}%0A` +
-                          `*Servicio:* ${tipo}%0A` +
-                          `*Contacto:* ${telefono}%0A` +
-                          `--------------------------------%0A` +
-                          `_Acabo de enviar el formulario por la web._`;
+        const form = e.target;
+        const btnSubmit = form.querySelector('button[type="submit"]');
+        btnSubmit.disabled = true; // Evitamos doble clic para no duplicar filas en el Excel
+        btnSubmit.innerText = "Procesando...";
 
-        // 3. Abrimos WhatsApp INMEDIATAMENTE (esto evita que el navegador lo bloquee)
-        window.open(`https://wa.me/5491131445518?text=${mensajeWS}`, '_blank');
+        const formData = new FormData(form);
         
-        // 4. El formulario seguirá su curso hacia Formspree normalmente
-        return true; 
+        // Enviamos los datos a tu URL de Google Script (/exec)
+        fetch(form.action, {
+            method: 'POST',
+            body: new URLSearchParams(formData)
+        })
+        .then(response => response.text())
+        .then(result => {
+            // Verificamos si el Script de Google nos devolvió que ya hay 10 anotados
+            if (result === "CUPO_LLENO") {
+                alert("¡Lo sentimos! La Promo Lanzamiento ya alcanzó su cupo máximo de 10 personas. Por favor, seleccioná el Pack Semanal o consultanos por WhatsApp.");
+                btnSubmit.disabled = false;
+                btnSubmit.innerText = "Confirmar y Enviar Inscripción";
+            } else {
+                // Si el resultado fue EXITOSO
+                const responsable = form.Responsable_Nombre.value;
+                const mensajeWS = `*Nueva Inscripción - Cuchara %26 Co*%0A*Cliente:* ${responsable}%0A_Cupo Lanzamiento reservado._`;
+                
+                // Abrimos WhatsApp
+                window.open(`https://wa.me/5491131445518?text=${mensajeWS}`, '_blank');
+                
+                alert("¡Inscripción exitosa! Cupo reservado.");
+                form.reset(); // Limpiamos el formulario
+                btnSubmit.disabled = false;
+                btnSubmit.innerText = "Confirmar y Enviar Inscripción";
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("Hubo un error en la conexión. Por favor intentá de nuevo o contactanos por WhatsApp.");
+            btnSubmit.disabled = false;
+            btnSubmit.innerText = "Confirmar y Enviar Inscripción";
+        });
     };
 
+    // Mantené esta función de abajo que es la que oculta los campos de alumno
     function toggleCampos() {
-        const tipo = document.getElementById('selectorServicio').value;
-        const seccion = document.getElementById('seccionAlumno');
-        const nombre = document.querySelector('input[name="Alumno_Nombre"]');
-        const colegio = document.querySelector('input[name="Alumno_Colegio"]');
-        const grado = document.querySelector('input[name="Alumno_Grado"]');
-
-        if(tipo === 'Particular') {
-            seccion.classList.add('hidden');
-            nombre.required = false; colegio.required = false; grado.required = false;
-        } else {
-            seccion.classList.remove('hidden');
-            nombre.required = true; colegio.required = true; grado.required = true;
-        }
+        // ... (el código que ya tenías para ocultar campos si es particular)
     }
-</script>
+    </script>
 </body>
 </html>
