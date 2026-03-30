@@ -18,7 +18,7 @@ body {
 
 /* --- LANDING --- */
 body.home {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,18 +37,23 @@ body.home {
     letter-spacing: 2px;
     font-weight: 600;
     font-size: 0.8rem;
-    transition: 0.3s;
+    transition: all 0.3s ease;
     border: 2px solid var(--trigo);
 }
 
-.btn-primary:hover { background-color: transparent; color: var(--trigo); }
+.btn-primary:hover { 
+    background-color: transparent; 
+    color: var(--trigo); 
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
 
 /* --- PÁGINAS INTERNAS --- */
 .menu-header { background-color: var(--verde); padding: 25px 0; text-align: center; }
 .logo-text { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--crema); text-decoration: none; letter-spacing: 2px; }
 .section-title { text-align: center; font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--verde); margin: 60px 0 40px; }
 
-/* GRID SIMÉTRICO 2x2 */
+/* GRID DINÁMICO */
 .menu-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -62,22 +67,37 @@ body.home {
     padding: 30px;
     border: 1px solid #eee;
     box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+    transition: transform 0.3s ease;
 }
+
+.menu-card:hover { transform: translateY(-5px); }
 
 .menu-card h3 { font-family: 'Playfair Display', serif; color: var(--verde); border-bottom: 1px solid var(--trigo); padding-bottom: 10px; margin-bottom: 20px; }
 ul { list-style: none; padding: 0; }
-li { margin-bottom: 12px; font-size: 0.9rem; }
+li { margin-bottom: 12px; font-size: 0.9rem; border-bottom: 1px solid #f9f9f9; padding-bottom: 8px; }
 li strong { color: var(--verde); display: block; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 2px; }
 
-.veg-note { text-align: center; margin: 40px auto; padding: 20px; background-color: #f0f4f1; border-left: 4px solid var(--verde); max-width: 700px; }
+.veg-note { text-align: center; margin: 40px auto; padding: 30px; background-color: #f0f4f1; border-left: 4px solid var(--verde); max-width: 700px; }
 .cta-container { text-align: center; margin: 50px 0; }
-.btn-whatsapp { display: inline-block; background-color: var(--verde); color: white; padding: 18px 35px; text-decoration: none; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
-.btn-whatsapp:hover { background-color: #25D366; }
 
-footer { text-align: center; padding: 40px; font-size: 0.7rem; color: #aaa; }
+.btn-whatsapp { 
+    display: inline-block; 
+    background-color: var(--verde); 
+    color: white; 
+    padding: 18px 35px; 
+    text-decoration: none; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    transition: 0.3s; 
+}
+.btn-whatsapp:hover { background-color: #25D366; transform: scale(1.05); }
 
-/* MOBILE */
+footer { text-align: center; padding: 60px 40px; font-size: 0.7rem; color: #aaa; text-transform: uppercase; letter-spacing: 1px; }
+
+/* MOBILE RESPONSIVE */
 @media (max-width: 800px) {
-    .menu-grid { grid-template-columns: 1fr; max-width: 450px; }
-    .section-title { font-size: 1.8rem; }
+    .menu-grid { grid-template-columns: 1fr; max-width: 450px; padding: 0 10px; }
+    .section-title { font-size: 1.8rem; margin: 40px 0 20px; }
+    .central-logo { max-width: 90%; }
 }
