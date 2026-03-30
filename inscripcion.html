@@ -3,9 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscripciones - Cuchara & Co.</title>
+    <title>Inscripción Escolar - Cuchara & Co.</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .form-section { border-bottom: 1px solid var(--trigo); margin-bottom: 30px; padding-bottom: 10px; }
+        .form-section h3 { font-family: 'Playfair Display', serif; color: var(--verde); text-transform: uppercase; font-size: 1.1rem; letter-spacing: 1px; }
+        .form-group { text-align: left; margin-bottom: 15px; }
+        label { display: block; font-weight: 600; font-size: 0.75rem; margin-bottom: 5px; color: #555; text-transform: uppercase; }
+        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; font-family: 'Montserrat', sans-serif; background: #fff; border-radius: 2px; }
+        .row { display: flex; gap: 15px; }
+        .row .form-group { flex: 1; }
+        @media (max-width: 600px) { .row { flex-direction: column; gap: 0; } }
+    </style>
 </head>
 <body class="menu-page">
 
@@ -14,43 +24,89 @@
     </header>
 
     <main class="container">
-        <h2 class="section-title">Alta de Servicio</h2>
+        <h2 class="section-title">Formulario de Inscripción</h2>
         
-        <div class="menu-grid" style="grid-template-columns: 1fr; max-width: 600px;">
-            <div class="menu-card">
-                <h3>Formulario de Inscripción</h3>
+        <div class="menu-grid" style="grid-template-columns: 1fr; max-width: 750px; margin-top: 0;">
+            <div class="menu-card" style="text-align: left;">
                 <form id="inscriptionForm" action="https://formspree.io/f/palvez293@gmail.com" method="POST">
                     
-                    <div style="text-align: left; margin-bottom: 15px;">
-                        <label>Tipo de Servicio:</label>
-                        <select name="servicio" required style="width: 100%; padding: 10px; margin-top: 5px;">
-                            <option value="Escolar">Servicio Escolar (Viandas Colegio)</option>
-                            <option value="Particular">Cliente Particular (Domicilio)</option>
+                    <div class="form-section"><h3>Datos del Tutor / Responsable</h3></div>
+                    <div class="form-group">
+                        <label>Nombre y Apellido</label>
+                        <input type="text" name="Tutor_Nombre" required placeholder="Nombre completo del responsable">
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label>Teléfono de contacto (WhatsApp)</label>
+                            <input type="tel" name="Tutor_Telefono" required placeholder="Ej: 11 3144-5518">
+                        </div>
+                        <div class="form-group">
+                            <label>Dirección de entrega</label>
+                            <input type="text" name="Entrega_Direccion" required placeholder="Calle y altura">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Localidad / Referencias</label>
+                        <input type="text" name="Entrega_Localidad" placeholder="Ej: Lanús - Timbre blanco">
+                    </div>
+
+                    <div class="form-section"><h3>Datos del Alumno</h3></div>
+                    <div class="form-group">
+                        <label>Nombre y Apellido del Alumno</label>
+                        <input type="text" name="Alumno_Nombre" required>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label>Colegio</label>
+                            <input type="text" name="Alumno_Colegio" required placeholder="Nombre de la institución">
+                        </div>
+                        <div class="form-group">
+                            <label>Año / Grado</label>
+                            <input type="text" name="Alumno_Grado" required placeholder="Ej: 4to Grado B">
+                        </div>
+                    </div>
+
+                    <div class="form-section"><h3>Información Alimentaria (Importante)</h3></div>
+                    <div class="form-group">
+                        <label>¿Posee alguna alergia diagnosticada?</label>
+                        <input type="text" name="Salud_Alergias" placeholder="Ej: Maní, Frutos secos, Pescado, o 'No'">
+                    </div>
+                    <div class="form-group">
+                        <label>¿Posee intolerancia a algún ingrediente?</label>
+                        <input type="text" name="Salud_Intolerancias" placeholder="Ej: Lactosa, Gluten, o 'No'">
+                    </div>
+                    <div class="form-group">
+                        <label>Observaciones o preferencias</label>
+                        <textarea name="Salud_Observaciones" rows="3" placeholder="Ej: No come cebolla, prefiere porciones pequeñas"></textarea>
+                    </div>
+
+                    <div class="form-section"><h3>Detalles del Servicio</h3></div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label>Plan Elegido</label>
+                            <select name="Servicio_Plan">
+                                <option value="Promo Lanzamiento">Promo Lanzamiento ($5.000 x vianda)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Cantidad Semanal</label>
+                            <input type="number" name="Servicio_Cantidad" value="5" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Método de Pago</label>
+                        <select name="Servicio_Pago" required>
+                            <option value="" disabled selected>Seleccioná...</option>
+                            <option value="Transferencia">Transferencia</option>
+                            <option value="Efectivo">Efectivo</option>
                         </select>
                     </div>
 
-                    <div style="text-align: left; margin-bottom: 15px;">
-                        <label>Nombre Completo:</label>
-                        <input type="text" name="nombre" required style="width: 100%; padding: 10px; margin-top: 5px;">
-                    </div>
-
-                    <div style="text-align: left; margin-bottom: 15px;">
-                        <label>Teléfono de Contacto:</label>
-                        <input type="tel" id="userPhone" name="telefono" required style="width: 100%; padding: 10px; margin-top: 5px;">
-                    </div>
-
-                    <div style="text-align: left; margin-bottom: 15px;">
-                        <label>Detalles / Alergias:</label>
-                        <textarea name="mensaje" rows="4" style="width: 100%; padding: 10px; margin-top: 5px;" placeholder="Ej: Alérgico al maní, menú vegetariano, etc."></textarea>
-                    </div>
-
-                    <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer;">Enviar Inscripción</button>
+                    <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer; padding: 20px; margin-top: 20px;">
+                        Confirmar y Enviar Inscripción
+                    </button>
                 </form>
             </div>
-        </div>
-
-        <div class="cta-container">
-            <a href="https://wa.me/5491131445518" class="btn-whatsapp" target="_blank">Consultar por WhatsApp</a>
         </div>
     </main>
 
@@ -59,21 +115,15 @@
     </footer>
 
     <script>
-        const form = document.getElementById('inscriptionForm');
-        
-        form.addEventListener('submit', function(e) {
-            // El formulario se enviará a Formspree por el "action"
-            // Pero preparamos el mensaje de WhatsApp para que el usuario lo mande después
-            const nombre = form.nombre.value;
-            const servicio = form.servicio.value;
-            const msg = `Hola Cuchara & Co! Soy ${nombre}, acabo de enviar mi inscripción para el servicio ${servicio}.`;
+        document.getElementById('inscriptionForm').onsubmit = function() {
+            const tutor = this.Tutor_Nombre.value;
+            const alumno = this.Alumno_Nombre.value;
+            const msg = `Hola Cuchara %26 Co! Soy ${tutor}, acabo de enviar la inscripción para el alumno ${alumno}.`;
             
-            // Abrimos WhatsApp en una ventana nueva después de un breve delay
             setTimeout(() => {
-                window.open(`https://wa.me/5491131445518?text=${encodeURIComponent(msg)}`, '_blank');
+                window.open(`https://wa.me/5491131445518?text=${msg}`, '_blank');
             }, 1000);
-        });
+        };
     </script>
-
 </body>
 </html>
