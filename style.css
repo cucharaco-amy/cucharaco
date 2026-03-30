@@ -1,17 +1,11 @@
-/* --- VARIABLES Y RESET --- */
 :root {
-    --verde: #1B3022; /* Verde Inglés */
-    --crema: #F9F7F2; /* Crema Papel */
-    --trigo: #C5A059; /* Dorado/Trigo */
+    --verde: #1B3022;
+    --crema: #F9F7F2;
+    --trigo: #C5A059;
     --texto: #333;
-    --wsapp: #25D366; /* Verde Oficial WhatsApp */
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
     font-family: 'Montserrat', sans-serif;
@@ -20,13 +14,9 @@ body {
     line-height: 1.6;
 }
 
-.container { 
-    max-width: 1100px; 
-    margin: 0 auto; 
-    padding: 0 20px; 
-}
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-/* --- ESTILOS PÁGINA DE INICIO (index.html) --- */
+/* --- LANDING --- */
 body.home {
     height: 100vh;
     display: flex;
@@ -35,178 +25,59 @@ body.home {
     text-align: center;
 }
 
-.central-logo {
-    width: 100%;
-    max-width: 600px;
-    height: auto;
-    margin-bottom: 40px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
+.central-logo { width: 100%; max-width: 550px; height: auto; margin-bottom: 40px; }
 
 .btn-primary {
     display: inline-block;
     background-color: var(--trigo);
     color: white;
-    padding: 18px 45px;
+    padding: 18px 40px;
     text-decoration: none;
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     font-weight: 600;
-    font-size: 0.85rem;
-    transition: 0.3s ease;
+    font-size: 0.8rem;
+    transition: 0.3s;
     border: 2px solid var(--trigo);
 }
 
-.btn-primary:hover {
-    background-color: transparent;
-    color: var(--trigo);
-    transform: translateY(-3px);
-}
+.btn-primary:hover { background-color: transparent; color: var(--trigo); }
 
-/* --- ESTILOS PÁGINA DEL MENÚ (menu.html) --- */
-.menu-header {
-    background-color: var(--verde);
-    padding: 25px 0;
-    text-align: center;
-}
+/* --- PÁGINAS INTERNAS --- */
+.menu-header { background-color: var(--verde); padding: 25px 0; text-align: center; }
+.logo-text { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--crema); text-decoration: none; letter-spacing: 2px; }
+.section-title { text-align: center; font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--verde); margin: 60px 0 40px; }
 
-.logo-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    color: var(--crema);
-    text-decoration: none;
-    letter-spacing: 2px;
-    display: inline-block;
-}
-
-.logo-text span { font-weight: 300; font-size: 1.1rem; }
-
-.section-title {
-    text-align: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 2.8rem;
-    color: var(--verde);
-    margin: 60px 0 40px;
-}
-
-/* --- CUADRÍCULA SIMÉTRICA 2x2 (Alineación perfecta) --- */
+/* GRID SIMÉTRICO 2x2 */
 .menu-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas exactas */
-    gap: 40px;
-    max-width: 950px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 900px;
     margin: 0 auto 50px auto;
 }
 
 .menu-card {
     background: white;
-    padding: 35px;
+    padding: 30px;
     border: 1px solid #eee;
     box-shadow: 0 5px 15px rgba(0,0,0,0.02);
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s ease;
 }
 
-.menu-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-}
+.menu-card h3 { font-family: 'Playfair Display', serif; color: var(--verde); border-bottom: 1px solid var(--trigo); padding-bottom: 10px; margin-bottom: 20px; }
+ul { list-style: none; padding: 0; }
+li { margin-bottom: 12px; font-size: 0.9rem; }
+li strong { color: var(--verde); display: block; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 2px; }
 
-.menu-card h3 {
-    font-family: 'Playfair Display', serif;
-    color: var(--verde);
-    border-bottom: 1px solid var(--trigo);
-    padding-bottom: 15px;
-    margin-bottom: 20px;
-    font-size: 1.4rem;
-}
+.veg-note { text-align: center; margin: 40px auto; padding: 20px; background-color: #f0f4f1; border-left: 4px solid var(--verde); max-width: 700px; }
+.cta-container { text-align: center; margin: 50px 0; }
+.btn-whatsapp { display: inline-block; background-color: var(--verde); color: white; padding: 18px 35px; text-decoration: none; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+.btn-whatsapp:hover { background-color: #25D366; }
 
-ul { list-style: none; padding: 0; margin: 0; }
+footer { text-align: center; padding: 40px; font-size: 0.7rem; color: #aaa; }
 
-li { 
-    margin-bottom: 15px; 
-    font-size: 0.95rem; 
-}
-
-li strong { 
-    color: var(--verde); 
-    display: block; 
-    font-size: 0.75rem; 
-    text-transform: uppercase; 
-    letter-spacing: 1px; 
-    margin-bottom: 3px; 
-}
-
-/* --- NOTA VEGETARIANA --- */
-.veg-note {
-    text-align: center;
-    margin: 40px auto;
-    padding: 25px;
-    background-color: #f0f4f1;
-    border-left: 4px solid var(--verde);
-    max-width: 750px;
-    font-style: italic;
-}
-
-/* --- BOTÓN WHATSAPP ACTIVADO --- */
-.cta-container { 
-    text-align: center; 
-    margin: 60px 0; 
-}
-
-.btn-whatsapp {
-    display: inline-block;
-    background-color: var(--verde);
-    color: white;
-    padding: 20px 45px;
-    text-decoration: none;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: 0.3s ease;
-    border: 2px solid var(--verde);
-    border-radius: 2px;
-}
-
-.btn-whatsapp:hover {
-    background-color: var(--wsapp); /* Color verde WhatsApp al pasar el mouse */
-    border-color: var(--wsapp);
-    color: white;
-    transform: scale(1.05);
-}
-
-/* --- FOOTER --- */
-footer { 
-    text-align: center; 
-    padding: 60px 20px; 
-    font-size: 0.75rem; 
-    color: #aaa; 
-}
-
-/* --- RESPONSIVIDAD (MOBILE Y TABLET) --- */
-@media (max-width: 850px) {
-    .menu-grid {
-        grid-template-columns: 1fr; /* Una columna en pantallas chicas */
-        gap: 25px;
-        max-width: 500px;
-    }
-
-    .section-title { font-size: 2.2rem; }
-    
-    body.home { 
-        height: auto; 
-        padding: 80px 20px; 
-    }
-    
-    .central-logo { 
-        max-width: 100%; 
-    }
-
-    .btn-primary {
-        padding: 15px 30px;
-        width: 100%;
-    }
+/* MOBILE */
+@media (max-width: 800px) {
+    .menu-grid { grid-template-columns: 1fr; max-width: 450px; }
+    .section-title { font-size: 1.8rem; }
 }
