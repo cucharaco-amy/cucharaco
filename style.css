@@ -101,17 +101,23 @@ footer { text-align: center; padding: 60px 40px; font-size: 0.7rem; color: #aaa;
     .section-title { font-size: 1.8rem; margin: 40px 0 20px; }
     .central-logo { max-width: 90%; }
 }
-/* --- ESTILOS GALERÍA OPTIMIZADOS --- */
+/* ============================================================
+   SECCIÓN GALERÍA - REFACTORIZADA (FIX PARA MÓVIL)
+   ============================================================ */
+
 .gallery-container {
-    padding: 40px 15px;
+    padding: 30px 15px;
     background-color: #fff;
+    width: 100%;
+    box-sizing: border-box; /* Evita desbordamientos */
 }
 
 .photo-grid {
-    display: grid;
-    /* Por defecto: 2 columnas en celulares */
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 12px;
+    display: grid !important;
+    /* Fuerza 2 columnas en celulares siempre */
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+    width: 100% !important;
     max-width: 1100px;
     margin: 0 auto;
 }
@@ -119,32 +125,37 @@ footer { text-align: center; padding: 60px 40px; font-size: 0.7rem; color: #aaa;
 .photo-item {
     position: relative;
     overflow: hidden;
-    border-radius: 6px;
-    height: 180px; /* Altura más baja para celular */
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    /* Altura fija para que no se pisen */
+    height: 160px !important; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    width: 100%;
+    display: block; /* Asegura que se comporte como bloque */
 }
 
 .photo-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Evita que la foto se estire */
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important; /* Corta la imagen para que encaje perfecto */
     display: block;
 }
 
-/* El texto solo aparece al tocar/pasar el mouse */
+/* El texto que aparece al tocar/hover */
 .photo-overlay {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(27, 48, 34, 0.85);
+    background: rgba(27, 48, 34, 0.9);
     color: white;
-    padding: 8px;
+    padding: 10px 5px;
     text-align: center;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
+    /* Oculto por defecto abajo */
+    transform: translateY(101%); 
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
+/* En celulares, el hover se activa al tocar la foto */
 .photo-item:hover .photo-overlay,
 .photo-item:active .photo-overlay {
     transform: translateY(0);
@@ -152,22 +163,24 @@ footer { text-align: center; padding: 60px 40px; font-size: 0.7rem; color: #aaa;
 
 .photo-overlay span {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-/* --- AJUSTE PARA COMPUTADORA (Pantallas grandes) --- */
+/* --- AJUSTE PARA COMPUTADORA (Pantallas mayores a 768px) --- */
 @media (min-width: 768px) {
     .photo-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+        gap: 25px !important;
     }
     
     .photo-item {
-        height: 250px; /* Altura normal para PC */
+        height: 280px !important; 
     }
 
     .photo-overlay span {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
 }
