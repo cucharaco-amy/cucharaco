@@ -20,100 +20,272 @@
             <div class="menu-card">
                 <h3>Semana 1: Clásicos</h3>
                 <ul>
-                    <li><strong>Lunes:</strong> Milanesitas de carne con puré mixto.</li>
-                    <li><strong>Martes:</strong> Penne Rigate con salsa bolognesa casera.</li>
-                    <li><strong>Miércoles:</strong> Nuggets caseros con batatas asadas.</li>
-                    <li><strong>Jueves:</strong> Pastel de papa tradicional (carne magra).</li>
-                    <li><strong>Viernes:</strong> Risotto de pollo y vegetales.</li>
+                    <li><span><strong>Lunes:</strong> Milanesitas de carne con puré mixto.</span> <button class="btn-info" onclick="openModal('mila_carne')">+info</button></li>
+                    <li><span><strong>Martes:</strong> Penne Rigate con salsa bolognesa.</span> <button class="btn-info" onclick="openModal('penne_bolo')">+info</button></li>
+                    <li><span><strong>Miércoles:</strong> Nuggets caseros con batatas.</span> <button class="btn-info" onclick="openModal('nuggets')">+info</button></li>
+                    <li><span><strong>Jueves:</strong> Pastel de papa tradicional.</span> <button class="btn-info" onclick="openModal('pastel_papa')">+info</button></li>
+                    <li><span><strong>Viernes:</strong> Risotto de pollo y vegetales.</span> <button class="btn-info" onclick="openModal('risotto')">+info</button></li>
                 </ul>
             </div>
 
             <div class="menu-card">
                 <h3>Semana 2: Energía</h3>
                 <ul>
-                    <li><strong>Lunes:</strong> Pollo al limón con arroz amarillo.</li>
-                    <li><strong>Martes:</strong> Ñoquis de papa con pomodoro y albahaca.</li>
-                    <li><strong>Miércoles:</strong> Hamburguesas caseras con cuñas de papa.</li>
-                    <li><strong>Jueves:</strong> Cazuela de pollo con calabaza y arroz.</li>
-                    <li><strong>Viernes:</strong> Albóndigas con puré cremoso.</li>
+                    <li><span><strong>Lunes:</strong> Pollo al limón con arroz amarillo.</span> <button class="btn-info" onclick="openModal('pollo_limon')">+info</button></li>
+                    <li><span><strong>Martes:</strong> Ñoquis con pomodoro y albahaca.</span> <button class="btn-info" onclick="openModal('noquis')">+info</button></li>
+                    <li><span><strong>Miércoles:</strong> Hamburguesas con cuñas de papa.</span> <button class="btn-info" onclick="openModal('hamburguesa')">+info</button></li>
+                    <li><span><strong>Jueves:</strong> Cazuela de pollo y calabaza.</span> <button class="btn-info" onclick="openModal('cazuela')">+info</button></li>
+                    <li><span><strong>Viernes:</strong> Albóndigas con puré cremoso.</span> <button class="btn-info" onclick="openModal('albondigas')">+info</button></li>
                 </ul>
             </div>
 
             <div class="menu-card">
                 <h3>Semana 3: Texturas</h3>
                 <ul>
-                    <li><strong>Lunes:</strong> Milanesas de pollo con puré de calabaza.</li>
-                    <li><strong>Martes:</strong> Tirabuzones a la crema de vegetales.</li>
-                    <li><strong>Miércoles:</strong> Tarta de jamón, queso y choclo.</li>
-                    <li><strong>Jueves:</strong> Carne al horno con papas rústicas.</li>
-                    <li><strong>Viernes:</strong> Salteado de pollo "Chow Fan".</li>
+                    <li><span><strong>Lunes:</strong> Milanesas de pollo con calabaza.</span> <button class="btn-info" onclick="openModal('mila_pollo')">+info</button></li>
+                    <li><span><strong>Martes:</strong> Tirabuzones a la crema.</span> <button class="btn-info" onclick="openModal('tirabuzones')">+info</button></li>
+                    <li><span><strong>Miércoles:</strong> Tarta de jamón, queso y choclo.</span> <button class="btn-info" onclick="openModal('tarta_jq')">+info</button></li>
+                    <li><span><strong>Jueves:</strong> Carne al horno con papas rústicas.</span> <button class="btn-info" onclick="openModal('carne_horno')">+info</button></li>
+                    <li><span><strong>Viernes:</strong> Salteado de pollo "Chow Fan".</span> <button class="btn-info" onclick="openModal('chow_fan')">+info</button></li>
                 </ul>
             </div>
 
             <div class="menu-card">
                 <h3>Semana 4: Cierre Premium</h3>
                 <ul>
-                    <li><strong>Lunes:</strong> Pastel de calabaza y pollo (liviano).</li>
-                    <li><strong>Martes:</strong> Ravioles de verdura con salsa rosa.</li>
-                    <li><strong>Miércoles:</strong> Suprema Napolitana con batatas al horno.</li>
-                    <li><strong>Jueves:</strong> Burritos de carne desmechada y arroz.</li>
-                    <li><strong>Viernes:</strong> Empanadas de pollo.</li>
+                    <li><span><strong>Lunes:</strong> Pastel de calabaza y pollo.</span> <button class="btn-info" onclick="openModal('pastel_calabaza')">+info</button></li>
+                    <li><span><strong>Martes:</strong> Ravioles de verdura salsa rosa.</span> <button class="btn-info" onclick="openModal('ravioles')">+info</button></li>
+                    <li><span><strong>Miércoles:</strong> Suprema Napolitana con batatas.</span> <button class="btn-info" onclick="openModal('suprema')">+info</button></li>
+                    <li><span><strong>Jueves:</strong> Burritos de carne y arroz.</span> <button class="btn-info" onclick="openModal('burritos')">+info</button></li>
+                    <li><span><strong>Viernes:</strong> Empanadas de pollo.</span> <button class="btn-info" onclick="openModal('empanadas')">+info</button></li>
                 </ul>
             </div>
         </div>
 
         <section style="margin-top: 80px; border-top: 1px solid var(--trigo); padding-top: 40px;">
             <h2 class="section-title" style="font-size: 1.8rem; margin-top: 0;">Compromiso Cuchara & Co.</h2>
-            
             <div class="menu-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
                 <div class="menu-card" style="border: none; background: #fff; box-shadow: none;">
-                    <h4 style="color: var(--verde); font-family: 'Playfair Display'; margin-bottom: 10px;">❄️ Cadena de Frío</h4>
-                    <p style="font-size: 0.85rem; color: #666;">Entregamos las viandas en estado de congelación profunda. Esto garantiza seguridad total desde nuestra cocina hasta tu hogar.</p>
+                    <h4>❄️ Cadena de Frío</h4>
+                    <p style="font-size: 0.85rem; color: #666;">Seguridad total desde nuestra cocina hasta tu hogar.</p>
                 </div>
-                
                 <div class="menu-card" style="border: none; background: #fff; box-shadow: none;">
-                    <h4 style="color: var(--verde); font-family: 'Playfair Display'; margin-bottom: 10px;">♨️ Tip de Microondas</h4>
-                    <p style="font-size: 0.85rem; color: #666;">No quites la tapa por completo. Realizá pequeñas perforaciones; el vapor circulará regenerando la textura original del plato (4-5 min).</p>
+                    <h4>♨️ Tip de Microondas</h4>
+                    <p style="font-size: 0.85rem; color: #666;">Pequeñas perforaciones para regenerar la textura ideal.</p>
                 </div>
-
                 <div class="menu-card" style="border: none; background: #fff; box-shadow: none;">
-                    <h4 style="color: var(--verde); font-family: 'Playfair Display'; margin-bottom: 10px;">🚚 Entrega Inteligente</h4>
-                    <p style="font-size: 0.85rem; color: #666;">Repartos los domingos por la tarde. Recibís el pack semanal y te olvidás de cocinar durante toda la semana escolar.</p>
+                    <h4>🚚 Entrega Inteligente</h4>
+                    <p style="font-size: 0.85rem; color: #666;">Repartos domingos tarde para toda la semana escolar.</p>
                 </div>
             </div>
         </section>
 
         <div style="text-align: center; padding: 60px 20px; background-color: #f9f9f9; border-radius: 8px; margin: 40px 0;">
             <h2 class="section-title" style="margin-top: 0; margin-bottom: 10px; font-size: 1.8rem;">Nuestra Cocina</h2>
-            <p style="font-family: 'Montserrat', sans-serif; color: #666; margin-bottom: 25px;">
-                Descubrí la calidad de nuestros platos preparados con ingredientes frescos.
-            </p>
-            <a href="galeria.html" class="btn-primary" style="text-decoration: none; display: inline-block; padding: 18px 45px;">
-                VER GALERÍA DE FOTOS
-            </a>
+            <p style="font-family: 'Montserrat', sans-serif; color: #666; margin-bottom: 25px;">Descubrí la calidad de nuestros platos preparados con ingredientes frescos.</p>
+            <a href="galeria.html" class="btn-primary">VER GALERÍA DE FOTOS</a>
         </div>
-
-        <section style="background-color: #f4f1ea; padding: 60px 20px; margin-top: 40px; border-radius: 4px;">
-            <div style="max-width: 800px; margin: 0 auto;">
-                <h2 style="font-family: 'Playfair Display', serif; color: var(--verde); text-align: center; margin-bottom: 40px;">Preguntas Frecuentes</h2>
-                
-                <div style="margin-bottom: 25px; text-align: left;">
-                    <h4 style="color: var(--verde); font-size: 0.9rem; text-transform: uppercase; margin-bottom: 5px;">¿Cuándo recibo mi pedido?</h4>
-                    <p style="font-size: 0.85rem; color: #555;">Realizamos las entregas todos los domingos por la tarde/noche en zona Sur Lanús - Banfield - Lomas de Zamora, para que arranques la semana con las viandas listas.</p>
-                </div>
-
-                <div style="margin-bottom: 25px; text-align: left;">
-                    <h4 style="color: var(--verde); font-size: 0.9rem; text-transform: uppercase; margin-bottom: 5px;">¿Hasta cuándo puedo pedir?</h4>
-                    <p style="font-size: 0.85rem; color: #555;">Tomamos pedidos hasta los jueves a las 20:00 hs para poder garantizar la frescura y el proceso de congelado correcto de cada plato.</p>
-                </div>
-            </div>
-        </section>
 
         <div class="cta-container">
-            <a href="https://wa.me/5491131445518?text=Hola%20Cuchara%20%26%20Co!%20Vi%20el%20menú%20y%20quería%20consultarte." class="btn-whatsapp" target="_blank">Consultar por WhatsApp</a>
+            <a href="https://wa.me/5491131445518" class="btn-whatsapp" target="_blank">Consultar por WhatsApp</a>
         </div>
     </main>
+
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div id="modalBody" class="modal-body">
+                </div>
+        </div>
+    </div>
 
     <footer>
         <p>&copy; 2026 Cuchara & Co. - Buenos Aires, Argentina</p>
     </footer>
+
+    <script>
+        const infoPlatos = {
+    // SEMANA 1: CLÁSICOS
+    'mila_carne': {
+        titulo: 'MILANESITAS DE CARNE CON PURÉ MIXTO',
+        ingredientes: '• Bola de lomo magra tiernizada<br>• Pan rallado premium y huevo<br>• Papa blanca seleccionada<br>• Calabaza asada al horno<br>• Leche, manteca y pizca de sal',
+        nutricion: 'Energía: 520 kcal | Proteína: 35g | Carbohidratos: 48g | Grasa: 14g',
+        alergenos: 'CONTIENE: TRIGO, HUEVO, LECHE.',
+        instrucciones: 'En microondas: Calentar la vianda cerrada durante 4-5 minutos a máxima potencia.'
+    },
+    'penne_bolo': {
+        titulo: 'PENNE RIGATE CON SALSA BOLOGNESA CASERA',
+        ingredientes: '• Pasta de sémola de trigo candeal<br>• Carne vacuna picada magra<br>• Tomate perita natural triturado<br>• Cebolla, zanahoria y apio<br>• Especias naturales',
+        nutricion: 'Energía: 580 kcal | Proteína: 28g | Carbohidratos: 65g | Grasa: 15g',
+        alergenos: 'CONTIENE: TRIGO. PUEDE CONTENER: HUEVO.',
+        instrucciones: 'En microondas: Realizar pequeñas perforaciones en la tapa y calentar 4 minutos.'
+    },
+    'nuggets': {
+        titulo: 'NUGGETS CASEROS CON BATATAS ASADAS',
+        ingredientes: '• Pechuga de pollo procesada pura<br>• Rebozado crocante especial<br>• Batatas dulces en rodajas<br>• Aceite de girasol (mínima cantidad)',
+        nutricion: 'Energía: 490 kcal | Proteína: 26g | Carbohidratos: 52g | Grasa: 12g',
+        alergenos: 'CONTIENE: TRIGO, HUEVO.',
+        instrucciones: 'En horno: Para mayor crocantez, 10 min a 200°C. Microondas: 4 min.'
+    },
+    'pastel_papa': {
+        titulo: 'PASTEL DE PAPA TRADICIONAL',
+        ingredientes: '• Carne vacuna magra seleccionada<br>• Puré de papa natural<br>• Cebolla blanca y de verdeo<br>• Huevo duro y aceitunas<br>• Queso para gratinar',
+        nutricion: 'Energía: 590 kcal | Proteína: 31g | Carbohidratos: 58g | Grasa: 19g',
+        alergenos: 'CONTIENE: LECHE, HUEVO.',
+        instrucciones: 'En microondas: 5 minutos. En horno: 12 min para dorar el queso.'
+    },
+    'risotto': {
+        titulo: 'RISOTTO DE POLLO Y VEGETALES',
+        ingredientes: '• Arroz doble carolina premium<br>• Pechuga de pollo en cubos<br>• Mix de arvejas y zanahorias<br>• Caldo natural de cocción<br>• Queso sardo rallado',
+        nutricion: 'Energía: 510 kcal | Proteína: 24g | Carbohidratos: 68g | Grasa: 11g',
+        alergenos: 'CONTIENE: LECHE.',
+        instrucciones: 'Microondas: 4 min. Se recomienda mezclar el plato al retirar para recuperar cremosidad.'
+    },
+
+    // SEMANA 2: ENERGÍA
+    'pollo_limon': {
+        titulo: 'POLLO AL LIMÓN CON ARROZ AMARILLO',
+        ingredientes: '• Suprema de pollo marinada<br>• Jugo de limón natural y ralladura<br>• Arroz largo fino calidad 00000<br>• Cúrcuma y vegetales picados',
+        nutricion: 'Energía: 485 kcal | Proteína: 36g | Carbohidratos: 62g | Grasa: 7g',
+        alergenos: 'LIBRE DE LÁCTEOS. SIN TRIGO.',
+        instrucciones: 'Microondas: Calentar vianda cerrada por 4 min para mantener el jugo del pollo.'
+    },
+    'noquis': {
+        titulo: 'ÑOQUIS DE PAPA CON POMODORO Y ALBAHACA',
+        ingredientes: '• Papa natural hervida<br>• Harina de trigo enriquecida<br>• Tomate perita natural<br>• Albahaca fresca y aceite de oliva',
+        nutricion: 'Energía: 460 kcal | Proteína: 11g | Carbohidratos: 78g | Grasa: 8g',
+        alergenos: 'CONTIENE: TRIGO, HUEVO.',
+        instrucciones: 'Microondas: 3-4 minutos. No exceder el tiempo para cuidar la textura de la pasta.'
+    },
+    'hamburguesa': {
+        titulo: 'HAMBURGUESAS CASERAS CON CUÑAS DE PAPA',
+        ingredientes: '• Carne 100% vacuna magra<br>• Condimento secreto de la casa<br>• Papas con cáscara rústicas<br>• Sal marina y romero',
+        nutricion: 'Energía: 550 kcal | Proteína: 33g | Carbohidratos: 45g | Grasa: 18g',
+        alergenos: 'PUEDE CONTENER: TRIGO (rebozado).',
+        instrucciones: 'En horno: 8-10 min para papas más crocantes. Microondas: 4 min.'
+    },
+    'cazuela': {
+        titulo: 'CAZUELA DE POLLO CON CALABAZA Y ARROZ',
+        ingredientes: '• Pechuga de pollo troceada<br>• Dados de calabaza dulce<br>• Arroz largo fino<br>• Caldo de pollo y verduras naturales',
+        nutricion: 'Energía: 470 kcal | Proteína: 29g | Carbohidratos: 64g | Grasa: 6g',
+        alergenos: 'LIBRE DE TRIGO Y LÁCTEOS.',
+        instrucciones: 'Microondas: 4-5 minutos. Plato ideal para días fríos.'
+    },
+    'albondigas': {
+        titulo: 'ALBÓNDIGAS CON PURÉ CREMOSO',
+        ingredientes: '• Carne vacuna picada magra<br>• Pan rallado y especias<br>• Papa natural y leche<br>• Salsa de tomate suave',
+        nutricion: 'Energía: 530 kcal | Proteína: 27g | Carbohidratos: 42g | Grasa: 16g',
+        alergenos: 'CONTIENE: TRIGO, LECHE, HUEVO.',
+        instrucciones: 'Microondas: 5 min. Asegurarse de que el centro de la albóndiga esté caliente.'
+    },
+
+    // SEMANA 3: TEXTURAS
+    'mila_pollo': {
+        titulo: 'MILANESAS DE POLLO CON PURÉ DE CALABAZA',
+        ingredientes: '• Pechuga de pollo fresca<br>• Rebozado tradicional y huevo<br>• Calabaza asada y pisada<br>• Queso crema liviano',
+        nutricion: 'Energía: 495 kcal | Proteína: 34g | Carbohidratos: 38g | Grasa: 13g',
+        alergenos: 'CONTIENE: TRIGO, HUEVO, LECHE.',
+        instrucciones: 'Microondas: 4 min. Horno: 10 min a 200°C.'
+    },
+    'tirabuzones': {
+        titulo: 'TIRABUZONES A LA CREMA DE VEGETALES',
+        ingredientes: '• Pasta seca de sémola<br>• Crema de leche ligera<br>• Mix estacional (brócoli, zanahoria, arvejas)<br>• Queso parmesano',
+        nutricion: 'Energía: 510 kcal | Proteína: 16g | Carbohidratos: 68g | Grasa: 14g',
+        alergenos: 'CONTIENE: TRIGO, LECHE.',
+        instrucciones: 'Microondas: 4 min. Revolver para integrar la crema.'
+    },
+    'tarta_jq': {
+        titulo: 'TARTA DE JAMÓN, QUESO Y CHOCLO',
+        ingredientes: '• Masa integral casera<br>• Jamón cocido magro<br>• Queso muzzarella y sardo<br>• Choclo amarillo en grano<br>• Ligue de huevo y crema',
+        nutricion: 'Energía: 480 kcal | Proteína: 22g | Carbohidratos: 40g | Grasa: 22g',
+        alergenos: 'CONTIENE: TRIGO, LECHE, HUEVO.',
+        instrucciones: 'En horno: 8 min para masa crocante. Microondas: 3 min.'
+    },
+    'carne_horno': {
+        titulo: 'CARNE AL HORNO CON PAPAS RÚSTICAS',
+        ingredientes: '• Corte vacuno (tapa de asado o roast beef)<br>• Papas con piel al romero<br>• Jugo de cocción natural<br>• Cebolla y morrón asados',
+        nutricion: 'Energía: 560 kcal | Proteína: 38g | Carbohidratos: 42g | Grasa: 18g',
+        alergenos: 'LIBRE DE TRIGO Y LÁCTEOS.',
+        instrucciones: 'Microondas: 5 min. Horno: 12 min envuelto en papel aluminio (opcional).'
+    },
+    'chow_fan': {
+        titulo: 'SALTEADO DE POLLO "CHOW FAN"',
+        ingredientes: '• Arroz de grano largo<br>• Pechuga de pollo en tiras<br>• Cebollita de verdeo y zanahoria<br>• Huevo revuelto<br>• Salsa de soja premium',
+        nutricion: 'Energía: 505 kcal | Proteína: 28g | Carbohidratos: 66g | Grasa: 9g',
+        alergenos: 'CONTIENE: SOJA, HUEVO. PUEDE CONTENER: TRIGO.',
+        instrucciones: 'Microondas: 4 min. Salteado ideal para comer con palillos o tenedor.'
+    },
+
+    // SEMANA 4: CIERRE PREMIUM
+    'pastel_calabaza': {
+        titulo: 'PASTEL DE CALABAZA Y POLLO (LIVIANO)',
+        ingredientes: '• Pollo desmechado al natural<br>• Puré de calabaza cremosa<br>• Cebolla caramelizada<br>• Queso port salut light',
+        nutricion: 'Energía: 440 kcal | Proteína: 32g | Carbohidratos: 35g | Grasa: 10g',
+        alergenos: 'CONTIENE: LECHE.',
+        instrucciones: 'Microondas: 4-5 min. Una opción baja en carbohidratos.'
+    },
+    'ravioles': {
+        titulo: 'RAVIOLES DE VERDURA CON SALSA ROSA',
+        ingredientes: '• Pasta de sémola con espinaca<br>• Relleno de ricota y acelga<br>• Salsa pomodoro casera<br>• Crema de leche fresca',
+        nutricion: 'Energía: 490 kcal | Proteína: 19g | Carbohidratos: 62g | Grasa: 15g',
+        alergenos: 'CONTIENE: TRIGO, LECHE, HUEVO.',
+        instrucciones: 'Microondas: 4 min con vianda cerrada para efecto vapor.'
+    },
+    'suprema': {
+        titulo: 'SUPREMA NAPOLITANA CON BATATAS AL HORNO',
+        ingredientes: '• Suprema de pollo rebozada<br>• Tomate natural y muzzarella<br>• Orégano fresco<br>• Batatas dulces horneadas',
+        nutricion: 'Energía: 570 kcal | Proteína: 38g | Carbohidratos: 46g | Grasa: 19g',
+        alergenos: 'CONTIENE: TRIGO, LECHE, HUEVO.',
+        instrucciones: 'Horno recomendado: 10 min a 200°C para fundir el queso correctamente.'
+    },
+    'burritos': {
+        titulo: 'BURRITOS DE CARNE DESMECHADA Y ARROZ',
+        ingredientes: '• Tortilla de trigo suave<br>• Carne vacuna cocción lenta<br>• Arroz blanco al vapor<br>• Vegetales salteados (morrón y cebolla)',
+        nutricion: 'Energía: 525 kcal | Proteína: 26g | Carbohidratos: 68g | Grasa: 14g',
+        alergenos: 'CONTIENE: TRIGO.',
+        instrucciones: 'Microondas: 3-4 min. Recomendado calentar envuelto en una servilleta de papel.'
+    },
+    'empanadas': {
+        titulo: 'EMPANADAS DE POLLO (3 UNIDADES)',
+        ingredientes: '• Masa de harina de trigo premium<br>• Pollo cocido al horno<br>• Cebolla, huevo y condimentos<br>• Horneadas (no fritas)',
+        nutricion: 'Energía: 510 kcal | Proteína: 21g | Carbohidratos: 58g | Grasa: 18g',
+        alergenos: 'CONTIENE: TRIGO, HUEVO.',
+        instrucciones: 'Horno: 8 min para masa crocante. Microondas: 2-3 min.'
+    }
+};
+
+        function openModal(key) {
+            const data = infoPlatos[key];
+            if (!data) return;
+            
+            document.getElementById('modalBody').innerHTML = `
+                <h2 class="modal-title">${data.titulo}</h2>
+                <div style="margin-bottom: 20px;">
+                    <h4 style="color: var(--trigo); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 8px;">Ingredientes:</h4>
+                    <p style="font-size: 0.9rem; line-height: 1.5; color: #444;">${data.ingredientes}</p>
+                </div>
+                <div style="margin-bottom: 20px; background: #fdfaf3; padding: 15px; border-radius: 6px;">
+                    <h4 style="color: var(--verde); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 5px;">Info Nutricional (por vianda):</h4>
+                    <p style="font-size: 0.85rem; font-weight: 600;">${data.nutricion}</p>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <p style="font-size: 0.75rem; color: #d9534f; font-weight: bold; border-top: 1px solid #eee; pt-10;">${data.alergenos}</p>
+                </div>
+                <div style="background: #f9f9f9; padding: 15px; border-radius: 6px; border-left: 4px solid var(--trigo);">
+                    <h4 style="color: #666; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 5px;">"Modo de uso:</h4>
+                    <p style="font-size: 0.8rem; color: #555;">${data.instrucciones}</p>
+                </div>
+            `;
+            document.getElementById('infoModal').style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById('infoModal').style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('infoModal')) closeModal();
+        }
+    </script>
+</body>
+</html>
