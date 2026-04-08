@@ -8,60 +8,65 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Ajuste necesario para que el contenido no quede debajo de la navbar fija */
-        .menu-page-content {
-            margin-top: 100px;
+        /* Estilos específicos para botones de información rápida */
+        .btn-info {
+            background: none;
+            border: 1px solid var(--trigo);
+            color: var(--trigo);
+            padding: 4px 10px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: all 0.3s;
         }
-        
-        /* Navbar específica para mantener consistencia */
-        .navbar {
-            position: fixed; top: 0; left: 0; width: 100%; background: #fff;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 10px 30px; z-index: 2000; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        .btn-info:hover {
+            background: var(--trigo);
+            color: white;
         }
-        .nav-logo img { height: 50px; width: auto; transition: 0.3s; }
-        
-        .nav-links { 
-            display: flex; gap: 20px; list-style: none; 
-            overflow-x: auto; white-space: nowrap; padding: 5px 0;
+        .modal-body h2 { 
+            font-family: 'Playfair Display', serif; 
+            color: var(--verde); 
+            margin-bottom: 20px; 
+            font-size: 1.5rem;
+            line-height: 1.2;
         }
-        .nav-links a { 
-            text-decoration: none; color: var(--verde); font-weight: 600; 
-            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;
-        }
-
-        @media (max-width: 800px) {
-            .navbar { padding: 10px 15px; }
-            .nav-logo img { height: 40px; }
-            .menu-page-content { margin-top: 80px; }
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #ccc;
         }
     </style>
 </head>
 <body class="menu-page">
 
-    <nav class="navbar">
-        <div class="nav-logo">
+    <header class="main-header">
+        <div class="logo-container-central">
             <a href="index.html">
-                <img src="logo-completo.png" alt="Cuchara & Co. Home">
+                <img src="logo-completo.png" alt="Cuchara & Co. Logo">
             </a>
         </div>
         
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="menu.html" style="color: var(--trigo);">Menú</a></li>
-            <li><a href="galeria.html">Galería</a></li>
-            <li><a href="inscripcion.html">Inscribirse</a></li>
-        </ul>
+        <nav class="nav-menu-central">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html" style="color: var(--trigo);">Menú</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="inscripcion.html">Inscribirse</a></li>
+                <li>
+                    <a href="inscripcion.html" class="cart-link">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
-        <div class="nav-icons" style="display: flex; align-items: center; gap: 15px;">
-            <div class="cart-icon" onclick="location.href='inscripcion.html'" style="position: relative; cursor: pointer; color: var(--verde); font-size: 1.1rem;">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <span style="position: absolute; top: -8px; right: -10px; background: #25D366; color: white; font-size: 0.6rem; padding: 2px 5px; border-radius: 50%;">0</span>
-            </div>
-        </div>
-    </nav>
-
-    <main class="container menu-page-content">
+    <main class="container">
         <h2 class="section-title">Calendario Mensual</h2>
         
         <div class="menu-grid">
@@ -110,79 +115,75 @@
             </div>
         </div>
 
-        <section style="margin-top: 80px; border-top: 1px solid var(--trigo); padding-top: 40px;">
-            <h2 class="section-title" style="font-size: 1.8rem; margin-top: 0;">Compromiso Cuchara & Co.</h2>
+        <section style="margin-top: 80px; border-top: 1px solid rgba(197, 160, 89, 0.3); padding-top: 60px;">
+            <h2 class="section-title" style="font-size: 2rem; margin-top: 0;">Compromiso Cuchara & Co.</h2>
             <div class="menu-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-                <div class="menu-card" style="border: none; background: #fff; box-shadow: none;">
-                    <h4>❄️ Cadena de Frío</h4>
-                    <p style="font-size: 0.85rem; color: #666;">Seguridad total desde nuestra cocina hasta tu hogar.</p>
+                <div class="menu-card" style="border: none; background: transparent; box-shadow: none; text-align: center;">
+                    <h4 style="color: var(--verde); margin-bottom: 10px;">❄️ Cadena de Frío</h4>
+                    <p style="font-size: 0.85rem; color: #666;">Seguridad total desde nuestra cocina hasta la institución.</p>
                 </div>
-                <div class="menu-card" style="border: none; background: #fff; box-shadow: none;">
-                    <h4>♨️ Tip de Microondas</h4>
-                    <p style="font-size: 0.85rem; color: #666;">Pequeñas perforaciones para regenerar la textura ideal.</p>
+                <div class="menu-card" style="border: none; background: transparent; box-shadow: none; text-align: center;">
+                    <h4 style="color: var(--verde); margin-bottom: 10px;">♨️ Regeneración Ideal</h4>
+                    <p style="font-size: 0.85rem; color: #666;">Envases diseñados para mantener la textura original tras el calentado.</p>
                 </div>
-                <div class="menu-card" style="border: none; background: #fff; box-shadow: none;">
-                    <h4>🚚 Entrega Inteligente</h4>
-                    <p style="font-size: 0.85rem; color: #666;">Repartos domingos tarde para toda la semana escolar.</p>
+                <div class="menu-card" style="border: none; background: transparent; box-shadow: none; text-align: center;">
+                    <h4 style="color: var(--verde); margin-bottom: 10px;">🚚 Entrega Programada</h4>
+                    <p style="font-size: 0.85rem; color: #666;">Logística optimizada para el horario escolar de Westminster.</p>
                 </div>
             </div>
         </section>
 
-        <div style="text-align: center; padding: 60px 20px; background-color: #f9f9f9; border-radius: 8px; margin: 40px 0;">
+        <div style="text-align: center; padding: 60px 20px; background-color: var(--blanco); border: 1px solid #eee; border-radius: 4px; margin: 60px 0;">
             <h2 class="section-title" style="margin-top: 0; margin-bottom: 10px; font-size: 1.8rem;">Nuestra Cocina</h2>
-            <p style="font-family: 'Montserrat', sans-serif; color: #666; margin-bottom: 25px;">Descubrí la calidad de nuestros platos preparados con ingredientes frescos.</p>
-            <a href="galeria.html" class="btn-primary">VER GALERÍA DE FOTOS</a>
-        </div>
-
-        <div class="cta-container">
-            <a href="https://wa.me/5491131445518" class="btn-whatsapp" target="_blank">Consultar por WhatsApp</a>
+            <p style="font-family: 'Montserrat', sans-serif; color: #666; margin-bottom: 25px; font-size: 0.9rem;">Descubrí la calidad visual de nuestros platos reales.</p>
+            <a href="galeria.html" class="btn-primary">VER FOTOS DE PLATOS</a>
         </div>
     </main>
 
     <div id="infoModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal()">&times;</span>
-            <div id="modalBody" class="modal-body"></div>
+            <div id="modalBody"></div>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 Cuchara & Co. - Buenos Aires, Argentina</p>
+    <footer style="background: var(--verde);">
+        <p style="letter-spacing: 2px; color: var(--crema); font-size: 0.7rem; font-weight: 600;">© 2026 CUCHARA & CO. — BUENOS AIRES</p>
     </footer>
 
     <script>
         const infoPlatos = {
-            'mila_carne': { titulo: 'MILANESITAS DE CARNE CON PURÉ MIXTO', ingredientes: '• Nalga magra tiernizada<br>• Pan rallado premium y huevo<br>• Papa blanca seleccionada<br>• Calabaza asada al horno', nutricion: 'Energía: 520 kcal | Proteína: 35g', alergenos: 'CONTIENE: TRIGO, HUEVO, LECHE.', instrucciones: 'Microondas: 4-5 minutos.' },
-            'penne_bolo': { titulo: 'PENNE RIGATE CON SALSA BOLOGNESA', ingredientes: '• Pasta de sémola<br>• Carne vacuna picada magra<br>• Tomate perita', nutricion: 'Energía: 580 kcal | Proteína: 28g', alergenos: 'CONTIENE: TRIGO.', instrucciones: 'Microondas: 4 minutos.' },
-            'nuggets': { titulo: 'NUGGETS CASEROS CON BATATAS', ingredientes: '• Pechuga de pollo procesada pura<br>• Rebozado crocante<br>• Batatas dulces', nutricion: 'Energía: 490 kcal | Proteína: 26g', alergenos: 'CONTIENE: TRIGO, HUEVO.', instrucciones: 'Horno: 10 min a 200°C.' },
-            'pastel_papa': { titulo: 'PASTEL DE PAPA TRADICIONAL', ingredientes: '• Carne vacuna magra<br>• Puré de papa natural<br>• Queso para gratinar', nutricion: 'Energía: 590 kcal | Proteína: 31g', alergenos: 'CONTIENE: LECHE, HUEVO.', instrucciones: 'Microondas: 5 minutos.' },
-            'risotto': { titulo: 'RISOTTO DE POLLO Y VEGETALES', ingredientes: '• Arroz doble carolina<br>• Pechuga de pollo<br>• Mix de arvejas y zanahorias', nutricion: 'Energía: 510 kcal | Proteína: 24g', alergenos: 'CONTIENE: LECHE.', instrucciones: 'Microondas: 4 min.' },
-            'pollo_limon': { titulo: 'POLLO AL LIMÓN CON ARROZ AMARILLO', ingredientes: '• Suprema de pollo marinada<br>• Jugo de limón natural<br>• Arroz largo fino', nutricion: 'Energía: 485 kcal | Proteína: 36g', alergenos: 'LIBRE DE LÁCTEOS.', instrucciones: 'Microondas: 4 min.' },
-            'noquis': { titulo: 'ÑOQUIS DE PAPA CON POMODORO', ingredientes: '• Papa natural hervida<br>• Harina de trigo<br>• Tomate perita', nutricion: 'Energía: 460 kcal | Proteína: 11g', alergenos: 'CONTIENE: TRIGO, HUEVO.', instrucciones: 'Microondas: 3-4 minutos.' },
-            'hamburguesa': { titulo: 'HAMBURGUESAS CASERAS CON PAPAS', ingredientes: '• Carne 100% vacuna magra<br>• Papas con cáscara rústicas', nutricion: 'Energía: 550 kcal | Proteína: 33g', alergenos: 'PUEDE CONTENER: TRIGO.', instrucciones: 'Horno: 8-10 min.' },
-            'cazuela': { titulo: 'CAZUELA DE POLLO Y CALABAZA', ingredientes: '• Pechuga de pollo troceada<br>• Dados de calabaza dulce<br>• Arroz largo fino', nutricion: 'Energía: 470 kcal | Proteína: 29g', alergenos: 'LIBRE DE TRIGO Y LÁCTEOS.', instrucciones: 'Microondas: 4-5 minutos.' },
-            'albondigas': { titulo: 'ALBÓNDIGAS CON PURÉ CREMOSO', ingredientes: '• Carne vacuna picada magra<br>• Papa natural y leche', nutricion: 'Energía: 530 kcal | Proteína: 27g', alergenos: 'CONTIENE: TRIGO, LECHE, HUEVO.', instrucciones: 'Microondas: 5 min.' },
-            'mila_pollo': { titulo: 'MILANESAS DE POLLO CON CALABAZA', ingredientes: '• Pechuga de pollo fresca<br>• Calabaza asada', nutricion: 'Energía: 495 kcal | Proteína: 34g', alergenos: 'CONTIENE: TRIGO, HUEVO, LECHE.', instrucciones: 'Microondas: 4 min.' },
-            'tirabuzones': { titulo: 'TIRABUZONES A LA CREMA', ingredientes: '• Pasta seca de sémola<br>• Crema de leche ligera<br>• Mix estacional', nutricion: 'Energía: 510 kcal | Proteína: 16g', alergenos: 'CONTIENE: TRIGO, LECHE.', instrucciones: 'Microondas: 4 min.' },
-            'tarta_jq': { titulo: 'TARTA DE JAMÓN, QUESO Y CHOCLO', ingredientes: '• Masa integral casera<br>• Jamón cocido magro<br>• Queso muzzarella', nutricion: 'Energía: 480 kcal | Proteína: 22g', alergenos: 'CONTIENE: TRIGO, LECHE, HUEVO.', instrucciones: 'Horno: 8 min.' },
-            'carne_horno': { titulo: 'CARNE AL HORNO CON PAPAS', ingredientes: '• Corte vacuno seleccionado<br>• Papas con piel al romero', nutricion: 'Energía: 560 kcal | Proteína: 38g', alergenos: 'LIBRE DE TRIGO Y LÁCTEOS.', instrucciones: 'Microondas: 5 min.' },
-            'chow_fan': { titulo: 'SALTEADO DE POLLO CHOW FAN', ingredientes: '• Arroz largo<br>• Pechuga de pollo<br>• Salsa de soja premium', nutricion: 'Energía: 505 kcal | Proteína: 28g', alergenos: 'CONTIENE: SOJA, HUEVO.', instrucciones: 'Microondas: 4 min.' },
-            'pastel_calabaza': { titulo: 'PASTEL DE CALABAZA Y POLLO', ingredientes: '• Pollo desmechado<br>• Puré de calabaza cremosa', nutricion: 'Energía: 440 kcal | Proteína: 32g', alergenos: 'CONTIENE: LECHE.', instrucciones: 'Microondas: 4-5 min.' },
-            'ravioles': { titulo: 'RAVIOLES CON SALSA ROSA', ingredientes: '• Pasta de sémola con espinaca<br>• Relleno de ricota y acelga', nutricion: 'Energía: 490 kcal | Proteína: 19g', alergenos: 'CONTIENE: TRIGO, LECHE, HUEVO.', instrucciones: 'Microondas: 4 min.' },
-            'suprema': { titulo: 'SUPREMA NAPOLITANA CON BATATAS', ingredientes: '• Suprema de pollo rebozada<br>• Tomate y muzzarella', nutricion: 'Energía: 570 kcal | Proteína: 38g', alergenos: 'CONTIENE: TRIGO, LECHE, HUEVO.', instrucciones: 'Horno: 10 min.' },
-            'burritos': { titulo: 'BURRITOS DE CARNE Y ARROZ', ingredientes: '• Tortilla de trigo suave<br>• Carne vacuna cocción lenta', nutricion: 'Energía: 525 kcal | Proteína: 26g', alergenos: 'CONTIENE: TRIGO.', instrucciones: 'Microondas: 3-4 min.' },
-            'empanadas': { titulo: 'EMPANADAS DE POLLO', ingredientes: '• Masa de harina premium<br>• Pollo cocido al horno', nutricion: 'Energía: 510 kcal | Proteína: 21g', alergenos: 'CONTIENE: TRIGO, HUEVO.', instrucciones: 'Horno: 8 min.' }
+            'mila_carne': { titulo: 'Milanesitas de Carne con Puré Mixto', ingredientes: '• Nalga magra tiernizada<br>• Pan rallado premium y huevo<br>• Papa blanca seleccionada<br>• Calabaza asada', nutricion: 'Energía: 520 kcal | Proteína: 35g', alergenos: 'CONTIENE: TRIGO, HUEVO, LECHE.', instrucciones: 'Calentar 4-5 minutos en microondas.' },
+            'penne_bolo': { titulo: 'Penne Rigate con Salsa Bolognesa', ingredientes: '• Pasta de sémola de trigo duro<br>• Carne vacuna picada magra<br>• Tomate perita natural', nutricion: 'Energía: 580 kcal | Proteína: 28g', alergenos: 'CONTIENE: TRIGO.', instrucciones: 'Calentar 4 minutos en microondas.' },
+            'nuggets': { titulo: 'Nuggets Caseros con Batatas', ingredientes: '• Pechuga de pollo pura procesada<br>• Rebozado crocante<br>• Batatas dulces al horno', nutricion: 'Energía: 490 kcal | Proteína: 26g', alergenos: 'CONTIENE: TRIGO, HUEVO.', instrucciones: 'Ideal horno 10 min o microondas 4 min.' },
+            'pastel_papa': { titulo: 'Pastel de Papa Tradicional', ingredientes: '• Carne vacuna magra seleccionada<br>• Puré de papa natural<br>• Queso parmesano', nutricion: 'Energía: 590 kcal | Proteína: 31g', alergenos: 'CONTIENE: LECHE, HUEVO.', instrucciones: 'Calentar 5 minutos en microondas.' },
+            'risotto': { titulo: 'Risotto de Pollo y Vegetales', ingredientes: '• Arroz doble carolina<br>• Pechuga de pollo en cubos<br>• Mix de vegetales estacionales', nutricion: 'Energía: 510 kcal | Proteína: 24g', alergenos: 'CONTIENE: LECHE.', instrucciones: 'Calentar 4 min en microondas.' },
+            'pollo_limon': { titulo: 'Pollo al Limón con Arroz Amarillo', ingredientes: '• Suprema marinada en cítricos<br>• Arroz largo fino con cúrcuma', nutricion: 'Energía: 485 kcal | Proteína: 36g', alergenos: 'LIBRE DE LÁCTEOS.', instrucciones: 'Calentar 4 min en microondas.' },
+            'noquis': { titulo: 'Ñoquis de Papa con Pomodoro', ingredientes: '• Papa natural hervida<br>• Salsa de tomate perita y albahaca', nutricion: 'Energía: 460 kcal | Proteína: 11g', alergenos: 'CONTIENE: TRIGO, HUEVO.', instrucciones: 'Calentar 3-4 minutos en microondas.' },
+            'hamburguesa': { titulo: 'Hamburguesas Caseras con Papas', ingredientes: '• Carne 100% vacuna magra<br>• Papas rústicas con piel', nutricion: 'Energía: 550 kcal | Proteína: 33g', alergenos: 'PUEDE CONTENER: TRIGO.', instrucciones: 'Calentar 4-5 min en microondas.' },
+            'cazuela': { titulo: 'Cazuela de Pollo y Calabaza', ingredientes: '• Pechuga troceada<br>• Calabaza dulce<br>• Arroz largo fino', nutricion: 'Energía: 470 kcal | Proteína: 29g', alergenos: 'LIBRE DE TRIGO Y LÁCTEOS.', instrucciones: 'Calentar 5 minutos en microondas.' },
+            'albondigas': { titulo: 'Albóndigas con Puré Cremoso', ingredientes: '• Carne vacuna picada magra<br>• Puré de papa natural con leche', nutricion: 'Energía: 530 kcal | Proteína: 27g', alergenos: 'CONTIENE: TRIGO, LECHE, HUEVO.', instrucciones: 'Calentar 5 min en microondas.' },
+            'mila_pollo': { titulo: 'Milanesas de Pollo con Calabaza', ingredientes: '• Pechuga de pollo fresca<br>• Calabaza asada al romero', nutricion: 'Energía: 495 kcal | Proteína: 34g', alergenos: 'CONTIENE: TRIGO, HUEVO.', instrucciones: 'Calentar 4 min en microondas.' },
+            'tirabuzones': { titulo: 'Tirabuzones a la Crema', ingredientes: '• Pasta seca de sémola<br>• Crema ligera y vegetales', nutricion: 'Energía: 510 kcal | Proteína: 16g', alergenos: 'CONTIENE: TRIGO, LECHE.', instrucciones: 'Calentar 4 min en microondas.' },
+            'tarta_jq': { titulo: 'Tarta de Jamón, Queso y Choclo', ingredientes: '• Masa integral casera<br>• Jamón cocido magro<br>• Muzzarella', nutricion: 'Energía: 480 kcal | Proteína: 22g', alergenos: 'CONTIENE: TRIGO, LECHE, HUEVO.', instrucciones: 'Ideal horno 8 min para crocante.' },
+            'carne_horno': { titulo: 'Carne al Horno con Papas', ingredientes: '• Corte vacuno de cocción lenta<br>• Papas rústicas al romero', nutricion: 'Energía: 560 kcal | Proteína: 38g', alergenos: 'LIBRE DE TRIGO Y LÁCTEOS.', instrucciones: 'Calentar 5 min en microondas.' },
+            'chow_fan': { titulo: 'Salteado de Pollo Chow Fan', ingredientes: '• Arroz largo salteado<br>• Pollo, huevo y vegetales<br>• Soja', nutricion: 'Energía: 505 kcal | Proteína: 28g', alergenos: 'CONTIENE: SOJA, HUEVO.', instrucciones: 'Calentar 4 min en microondas.' },
+            'pastel_calabaza': { titulo: 'Pastel de Calabaza y Pollo', ingredientes: '• Pollo desmechado jugoso<br>• Puré de calabaza cremosa', nutricion: 'Energía: 440 kcal | Proteína: 32g', alergenos: 'CONTIENE: LECHE.', instrucciones: 'Calentar 5 min en microondas.' },
+            'ravioles': { titulo: 'Ravioles con Salsa Rosa', ingredientes: '• Pasta rellena de espinaca y ricota<br>• Pomodoro y crema', nutricion: 'Energía: 490 kcal | Proteína: 19g', alergenos: 'CONTIENE: TRIGO, LECHE, HUEVO.', instrucciones: 'Calentar 4 min en microondas.' },
+            'suprema': { titulo: 'Suprema Napolitana con Batatas', ingredientes: '• Suprema rebozada<br>• Salsa de tomate y muzzarella<br>• Batatas', nutricion: 'Energía: 570 kcal | Proteína: 38g', alergenos: 'CONTIENE: TRIGO, LECHE.', instrucciones: 'Calentar 5 min en microondas.' },
+            'burritos': { titulo: 'Burritos de Carne y Arroz', ingredientes: '• Tortilla de trigo suave<br>• Carne desmechada y arroz largo', nutricion: 'Energía: 525 kcal | Proteína: 26g', alergenos: 'CONTIENE: TRIGO.', instrucciones: 'Calentar 3-4 min en microondas.' },
+            'empanadas': { titulo: 'Empanadas de Pollo', ingredientes: '• Masa premium horneada<br>• Relleno de pollo jugoso casero', nutricion: 'Energía: 510 kcal | Proteína: 21g', alergenos: 'CONTIENE: TRIGO, HUEVO.', instrucciones: 'Calentar 8 min en horno o 2 min micro.' }
         };
 
         function openModal(key) {
             const data = infoPlatos[key];
             if (!data) return;
             document.getElementById('modalBody').innerHTML = `
-                <h2 class="modal-title">${data.titulo}</h2>
-                <div style="margin-bottom: 20px;"><h4 style="color: var(--trigo); font-size: 0.8rem; text-transform: uppercase;">Ingredientes:</h4><p style="font-size: 0.9rem; color: #444;">${data.ingredientes}</p></div>
-                <div style="margin-bottom: 20px; background: #fdfaf3; padding: 15px; border-radius: 6px;"><h4 style="color: var(--verde); font-size: 0.8rem;">Info Nutricional:</h4><p style="font-size: 0.85rem; font-weight: 600;">${data.nutricion}</p></div>
-                <div style="margin-bottom: 20px;"><p style="font-size: 0.75rem; color: #d9534f; font-weight: bold;">${data.alergenos}</p></div>
-                <div style="background: #f9f9f9; padding: 15px; border-radius: 6px; border-left: 4px solid var(--trigo);"><h4 style="color: #666; font-size: 0.75rem;">Modo de uso:</h4><p style="font-size: 0.8rem; color: #555;">${data.instrucciones}</p></div>
+                <h2>${data.titulo}</h2>
+                <div style="margin-bottom: 15px;"><h4 style="color: var(--trigo); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">Ingredientes:</h4><p style="font-size: 0.85rem; color: #444;">${data.ingredientes}</p></div>
+                <div style="margin-bottom: 15px; background: #fdfaf3; padding: 12px; border-radius: 4px;"><h4 style="color: var(--verde); font-size: 0.75rem;">Nutrición:</h4><p style="font-size: 0.85rem; font-weight: 600;">${data.nutricion}</p></div>
+                <div style="margin-bottom: 15px;"><p style="font-size: 0.7rem; color: #d9534f; font-weight: bold;">${data.alergenos}</p></div>
+                <div style="background: #f9f9f9; padding: 12px; border-radius: 4px; border-left: 3px solid var(--trigo);"><h4 style="color: #888; font-size: 0.7rem; text-transform: uppercase;">Regeneración:</h4><p style="font-size: 0.8rem; color: #555;">${data.instrucciones}</p></div>
             `;
             document.getElementById('infoModal').style.display = "block";
         }
