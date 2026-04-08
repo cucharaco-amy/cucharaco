@@ -123,55 +123,82 @@
     </footer>
 
     <script>
-    // ESTE ES EL BLOQUE QUE TENÉS QUE REEMPLAZAR COMPLETAMENTE
+    // Función para mostrar/ocultar campos según el tipo de servicio
+    function toggleCampos() {
+        const servicio = document.getElementById('selectorServicio').value;
+        const seccionAlumno = document.getElementById('seccionAlumno');
+        
+        // Obtenemos los inputs que son específicos de alumnos
+        const inputsAlumno = [
+            document.getElementById('inputAlumnoNombre'),
+            document.getElementById('inputAlumnoColegio'),
+            document.getElementById('inputAlumnoGrado')
+        ];
+
+        if (servicio === 'Particular') {
+            // Ocultamos la sección
+            seccionAlumno.classList.add('hidden');
+            
+            // Quitamos la obligatoriedad y limpiamos los valores
+            inputsAlumno.forEach(input => {
+                input.required = false;
+                input.value = ""; 
+            });
+        } else {
+            // Mostramos la sección (Servicio Escolar)
+            seccionAlumno.classList.remove('hidden');
+            
+            // Volvemos a hacerlos requeridos para el proceso escolar
+            inputsAlumno.forEach(input => {
+                input.required = true;
+            });
+        }
+    }
+
+    // Ejecutamos al cargar la página para asegurar el estado inicial
+    window.onload = toggleCampos;
+
+    // Lógica de envío del formulario (Mantenemos tu integración con Google Sheets)
     document.getElementById('inscriptionForm').onsubmit = function(e) {
         e.preventDefault();
         
         const form = e.target;
         const btnSubmit = form.querySelector('button[type="submit"]');
-        btnSubmit.disabled = true; // Evitamos doble clic para no duplicar filas en el Excel
+        btnSubmit.disabled = true;
         btnSubmit.innerText = "Procesando...";
 
         const formData = new FormData(form);
         
-        // Enviamos los datos a tu URL de Google Script (/exec)
         fetch(form.action, {
             method: 'POST',
             body: new URLSearchParams(formData)
         })
         .then(response => response.text())
         .then(result => {
-            // Verificamos si el Script de Google nos devolvió que ya hay 10 anotados
             if (result === "CUPO_LLENO") {
-                alert("¡Lo sentimos! La Promo Lanzamiento ya alcanzó su cupo máximo de 10 personas. Por favor, seleccioná el Pack Semanal o consultanos por WhatsApp.");
+                alert("¡Lo sentimos! La Promo Lanzamiento ya alcanzó su cupo máximo. Por favor, seleccioná el Pack Semanal.");
                 btnSubmit.disabled = false;
                 btnSubmit.innerText = "Confirmar y Enviar Inscripción";
             } else {
-                // Si el resultado fue EXITOSO
                 const responsable = form.Responsable_Nombre.value;
-                const mensajeWS = `*Nueva Inscripción - Cuchara %26 Co*%0A*Cliente:* ${responsable}%0A_Cupo Lanzamiento reservado._`;
+                const mensajeWS = `*Nueva Inscripción - Cuchara %26 Co*%0A*Cliente:* ${responsable}%0A_Cupo reservado vía Web._`;
                 
-                // Abrimos WhatsApp
                 window.open(`https://wa.me/5491131445518?text=${mensajeWS}`, '_blank');
                 
                 alert("¡Inscripción exitosa! Cupo reservado.");
-                form.reset(); // Limpiamos el formulario
+                form.reset();
+                toggleCampos(); // Reseteamos la visibilidad
                 btnSubmit.disabled = false;
                 btnSubmit.innerText = "Confirmar y Enviar Inscripción";
             }
         })
         .catch(error => {
             console.error("Error:", error);
-            alert("Hubo un error en la conexión. Por favor intentá de nuevo o contactanos por WhatsApp.");
+            alert("Hubo un error en la conexión. Intentá de nuevo o contactanos por WhatsApp.");
             btnSubmit.disabled = false;
             btnSubmit.innerText = "Confirmar y Enviar Inscripción";
         });
     };
-
-    // Mantené esta función de abajo que es la que oculta los campos de alumno
-    function toggleCampos() {
-        // ... (el código que ya tenías para ocultar campos si es particular)
-    }
-    </script>
+</script>
 </body>
 </html>
