@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cuchara & Co. | Simple. Sano. Tuyo.</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -18,7 +16,6 @@
                 <img src="logo-completo.png" alt="Cuchara & Co. Logo">
             </a>
         </div>
-        
         <nav class="nav-menu-central">
             <ul class="nav-links">
                 <li><a href="index.html" style="color: var(--trigo);">Home</a></li>
@@ -29,38 +26,7 @@
         </nav>
     </header>
 
-    <main class="container">
-        <section class="hero-section">
-             </section>
-    </main>
-
-    ```
-
----
-
-### 2. Ajuste Crítico en tu `style.css`
-Para evitar que el logo se vea gigante o se desplace en pantallas muy anchas, agregá estas dos reglas al final de tu archivo CSS. Esto forzará al header a comportarse como un bloque único:
-
-```css
-/* FIX DE EMERGENCIA PARA EL LAYOUT */
-.home-page {
-    display: block; /* Asegura que no haya un flex accidental en el body */
-    width: 100%;
-}
-
-.main-header {
-    position: relative; /* Evita que flote sobre el carrusel si no lo deseas */
-    z-index: 1000;
-}
-
-/* Si el logo desaparece o se ve mal, asegúrate de que el contenedor no lo oculte */
-.logo-container-central {
-    display: block;
-    width: 100%;
-    text-align: center;
-}
-
-    <section class="hero-slider" style="margin-top: 0; height: 75vh;">
+    <section class="hero-slider">
         <img src="logo-completo.png" class="hero-bg-logo" alt="Fondo Marca de Agua">
         
         <div class="slide-track">
@@ -69,34 +35,31 @@ Para evitar que el logo se vea gigante o se desplace en pantallas muy anchas, ag
             <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1200" class="slide" alt="Bowl Saludable">
         </div>
 
-        <div class="hero-text" style="top: 50%;">
-            <h1 style="font-family: 'Playfair Display'; font-size: 4rem; margin-bottom: 10px; line-height: 1.1; text-shadow: 2px 2px 10px rgba(0,0,0,0.3);">Simple. Sano. Tuyo.</h1>
-            <p style="letter-spacing: 4px; text-transform: uppercase; font-size: 0.9rem; font-weight: 300; opacity: 0.95;">Viandas Institucionales y Particulares</p>
-            <br><br>
+        <div class="hero-text">
+            <h1>Simple. Sano. Tuyo.</h1>
+            <p>Viandas Institucionales y Particulares</p>
             <a href="menu.html" class="btn-primary">EXPLORAR MENÚ</a>
         </div>
     </section>
 
-    <main class="container" style="padding: 80px 20px;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px;">
-            
-            <div style="padding: 40px 30px; border-top: 4px solid var(--trigo); background: #fff; box-shadow: 0 15px 35px rgba(0,0,0,0.04); text-align: center; border-radius: 0 0 8px 8px;">
-                <i class="fa-solid fa-truck-fast" style="color: var(--trigo); font-size: 1.8rem; margin-bottom: 20px;"></i>
-                <h4 style="color: var(--verde); font-family: 'Playfair Display'; margin-bottom: 15px; font-size: 1.4rem;">Logística Westminster</h4>
-                <p style="font-size: 0.9rem; color: #666; line-height: 1.7;">Entregas programadas diseñadas para integrarse sin fricciones en la rutina de las familias del colegio.</p>
+    <main class="container">
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fa-solid fa-truck-fast"></i>
+                <h4>Logística Westminster</h4>
+                <p>Entregas programadas diseñadas para integrarse sin fricciones en la rutina de las familias del colegio.</p>
             </div>
 
-            <div style="padding: 40px 30px; border-top: 4px solid var(--trigo); background: #fff; box-shadow: 0 15px 35px rgba(0,0,0,0.04); text-align: center; border-radius: 0 0 8px 8px;">
-                <i class="fa-solid fa-shield-heart" style="color: var(--trigo); font-size: 1.8rem; margin-bottom: 20px;"></i>
-                <h4 style="color: var(--verde); font-family: 'Playfair Display'; margin-bottom: 15px; font-size: 1.4rem;">Calidad Certificada</h4>
-                <p style="font-size: 0.9rem; color: #666; line-height: 1.7;">Procesos térmicos controlados y envases de alta densidad, garantizando una alimentación libre de toxinas.</p>
+            <div class="feature-card">
+                <i class="fa-solid fa-shield-heart"></i>
+                <h4>Calidad Certificada</h4>
+                <p>Procesos térmicos controlados y envases de alta densidad, garantizando una alimentación libre de toxinas.</p>
             </div>
-
         </div>
     </main>
 
-    <footer style="background: var(--verde);">
-        <p style="letter-spacing: 2px; color: var(--crema); font-size: 0.7rem; font-weight: 600;">© 2026 CUCHARA & CO. — BUENOS AIRES</p>
+    <footer class="main-footer">
+        <p>© 2026 CUCHARA & CO. — BUENOS AIRES</p>
     </footer>
 
 </body>
