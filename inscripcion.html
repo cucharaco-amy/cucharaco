@@ -6,7 +6,20 @@
     <title>Inscripción - Cuchara & Co.</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* Ajuste para navbar fija */
+        .form-page-content { margin-top: 100px; padding-bottom: 60px; }
+        
+        .navbar {
+            position: fixed; top: 0; left: 0; width: 100%; background: #fff;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 30px; z-index: 2000; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .nav-logo img { height: 50px; width: auto; }
+        .nav-links { display: flex; gap: 20px; list-style: none; overflow-x: auto; white-space: nowrap; }
+        .nav-links a { text-decoration: none; color: var(--verde); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
+
         .form-section { border-bottom: 1px solid var(--trigo); margin-bottom: 30px; padding-bottom: 10px; margin-top: 20px; }
         .form-section h3 { font-family: 'Playfair Display', serif; color: var(--verde); text-transform: uppercase; font-size: 1.1rem; letter-spacing: 1px; }
         .form-group { text-align: left; margin-bottom: 15px; }
@@ -15,19 +28,43 @@
         .row { display: flex; gap: 15px; }
         .row .form-group { flex: 1; }
         .hidden { display: none; }
-        @media (max-width: 600px) { .row { flex-direction: column; gap: 0; } }
+
+        @media (max-width: 800px) {
+            .navbar { padding: 10px 15px; }
+            .nav-logo img { height: 40px; }
+            .form-page-content { margin-top: 80px; }
+            .row { flex-direction: column; gap: 0; }
+        }
     </style>
 </head>
 <body class="menu-page">
 
-    <header class="menu-header">
-        <a href="index.html" class="logo-text">CUCHARA <span>& CO.</span></a>
-    </header>
+    <nav class="navbar">
+        <div class="nav-logo">
+            <a href="index.html">
+                <img src="logo-completo.png" alt="Cuchara & Co. Home">
+            </a>
+        </div>
+        
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menú</a></li>
+            <li><a href="galeria.html">Galería</a></li>
+            <li><a href="inscripcion.html" style="color: var(--trigo);">Inscribirse</a></li>
+        </ul>
 
-    <main class="container">
+        <div class="nav-icons">
+            <div class="cart-icon" style="color: var(--verde); font-size: 1.1rem; position: relative;">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span style="position: absolute; top: -8px; right: -10px; background: #25D366; color: white; font-size: 0.6rem; padding: 2px 5px; border-radius: 50%;">1</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container form-page-content">
         <h2 class="section-title">Alta de Servicio</h2>
         
-        <div class="menu-grid" style="grid-template-columns: 1fr; max-width: 750px; margin-top: 0;">
+        <div class="menu-grid" style="grid-template-columns: 1fr; max-width: 750px; margin: 0 auto;">
             <div class="menu-card" style="text-align: left;">
                 <form id="inscriptionForm" action="https://script.google.com/macros/s/AKfycbzTx5zzmG9l5FCvVmlwVcjUR9sSFGEtjv17NuXRT1SfaXzR00ps4qnIiFoPbfG_Gr3L/exec" method="POST">
                     
@@ -61,27 +98,27 @@
                     </div>
 
                     <div id="seccionAlumno">
-    <div class="form-section"><h3>Datos del Alumno</h3></div>
-    <div class="form-group">
-        <label>Nombre y Apellido del Alumno</label>
-        <input type="text" name="Alumno_Nombre" id="inputAlumnoNombre" required placeholder="Nombre del estudiante">
-    </div>
-    <div class="row">
-        <div class="form-group">
-            <label>Colegio</label>
-            <input type="text" name="Alumno_Colegio" id="inputAlumnoColegio" required placeholder="Nombre de la institución">
-        </div>
-        <div class="form-group">
-            <label>Año / Grado</label>
-            <input type="text" name="Alumno_Grado" id="inputAlumnoGrado" required placeholder="Ej: 4to Grado B">
-        </div>
-    </div>
-</div>
+                        <div class="form-section"><h3>Datos del Alumno</h3></div>
+                        <div class="form-group">
+                            <label>Nombre y Apellido del Alumno</label>
+                            <input type="text" name="Alumno_Nombre" id="inputAlumnoNombre" required placeholder="Nombre del estudiante">
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label>Colegio</label>
+                                <input type="text" name="Alumno_Colegio" id="inputAlumnoColegio" required placeholder="Nombre de la institución">
+                            </div>
+                            <div class="form-group">
+                                <label>Año / Grado</label>
+                                <input type="text" name="Alumno_Grado" id="inputAlumnoGrado" required placeholder="Ej: 4to Grado B">
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="form-section"><h3>Información Alimentaria</h3></div>
                     <div class="form-group">
                         <label>¿Alergias diagnosticadas?</label>
-                        <input type="text" name="Salud_Alergias" placeholder="Ej: Maní, Frutos secos, Pescado o 'No'">
+                        <input type="text" name="Salud_Alergias" placeholder="Ej: Maní, Frutos secos o 'No'">
                     </div>
                     <div class="form-group">
                         <label>¿Intolerancias?</label>
@@ -123,82 +160,56 @@
     </footer>
 
     <script>
-    // Función para mostrar/ocultar campos según el tipo de servicio
-    function toggleCampos() {
-        const servicio = document.getElementById('selectorServicio').value;
-        const seccionAlumno = document.getElementById('seccionAlumno');
-        
-        // Obtenemos los inputs que son específicos de alumnos
-        const inputsAlumno = [
-            document.getElementById('inputAlumnoNombre'),
-            document.getElementById('inputAlumnoColegio'),
-            document.getElementById('inputAlumnoGrado')
-        ];
+        function toggleCampos() {
+            const servicio = document.getElementById('selectorServicio').value;
+            const seccionAlumno = document.getElementById('seccionAlumno');
+            const inputsAlumno = [
+                document.getElementById('inputAlumnoNombre'),
+                document.getElementById('inputAlumnoColegio'),
+                document.getElementById('inputAlumnoGrado')
+            ];
 
-        if (servicio === 'Particular') {
-            // Ocultamos la sección
-            seccionAlumno.classList.add('hidden');
-            
-            // Quitamos la obligatoriedad y limpiamos los valores
-            inputsAlumno.forEach(input => {
-                input.required = false;
-                input.value = ""; 
-            });
-        } else {
-            // Mostramos la sección (Servicio Escolar)
-            seccionAlumno.classList.remove('hidden');
-            
-            // Volvemos a hacerlos requeridos para el proceso escolar
-            inputsAlumno.forEach(input => {
-                input.required = true;
-            });
-        }
-    }
-
-    // Ejecutamos al cargar la página para asegurar el estado inicial
-    window.onload = toggleCampos;
-
-    // Lógica de envío del formulario (Mantenemos tu integración con Google Sheets)
-    document.getElementById('inscriptionForm').onsubmit = function(e) {
-        e.preventDefault();
-        
-        const form = e.target;
-        const btnSubmit = form.querySelector('button[type="submit"]');
-        btnSubmit.disabled = true;
-        btnSubmit.innerText = "Procesando...";
-
-        const formData = new FormData(form);
-        
-        fetch(form.action, {
-            method: 'POST',
-            body: new URLSearchParams(formData)
-        })
-        .then(response => response.text())
-        .then(result => {
-            if (result === "CUPO_LLENO") {
-                alert("¡Lo sentimos! La Promo Lanzamiento ya alcanzó su cupo máximo. Por favor, seleccioná el Pack Semanal.");
-                btnSubmit.disabled = false;
-                btnSubmit.innerText = "Confirmar y Enviar Inscripción";
+            if (servicio === 'Particular') {
+                seccionAlumno.classList.add('hidden');
+                inputsAlumno.forEach(input => { input.required = false; input.value = ""; });
             } else {
-                const responsable = form.Responsable_Nombre.value;
-                const mensajeWS = `*Nueva Inscripción - Cuchara %26 Co*%0A*Cliente:* ${responsable}%0A_Cupo reservado vía Web._`;
-                
-                window.open(`https://wa.me/5491131445518?text=${mensajeWS}`, '_blank');
-                
-                alert("¡Inscripción exitosa! Cupo reservado.");
-                form.reset();
-                toggleCampos(); // Reseteamos la visibilidad
+                seccionAlumno.classList.remove('hidden');
+                inputsAlumno.forEach(input => { input.required = true; });
+            }
+        }
+
+        window.onload = toggleCampos;
+
+        document.getElementById('inscriptionForm').onsubmit = function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const btnSubmit = form.querySelector('button[type="submit"]');
+            btnSubmit.disabled = true;
+            btnSubmit.innerText = "Procesando...";
+
+            const formData = new FormData(form);
+            fetch(form.action, { method: 'POST', body: new URLSearchParams(formData) })
+            .then(response => response.text())
+            .then(result => {
+                if (result === "CUPO_LLENO") {
+                    alert("¡Lo sentimos! Cupo máximo alcanzado para esta promo.");
+                } else {
+                    const responsable = form.Responsable_Nombre.value;
+                    const mensajeWS = `*Nueva Inscripción - Cuchara %26 Co*%0A*Cliente:* ${responsable}`;
+                    window.open(`https://wa.me/5491131445518?text=${mensajeWS}`, '_blank');
+                    alert("¡Inscripción exitosa!");
+                    form.reset();
+                    toggleCampos();
+                }
                 btnSubmit.disabled = false;
                 btnSubmit.innerText = "Confirmar y Enviar Inscripción";
-            }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            alert("Hubo un error en la conexión. Intentá de nuevo o contactanos por WhatsApp.");
-            btnSubmit.disabled = false;
-            btnSubmit.innerText = "Confirmar y Enviar Inscripción";
-        });
-    };
-</script>
+            })
+            .catch(() => {
+                alert("Error de conexión.");
+                btnSubmit.disabled = false;
+                btnSubmit.innerText = "Confirmar y Enviar Inscripción";
+            });
+        };
+    </script>
 </body>
 </html>
