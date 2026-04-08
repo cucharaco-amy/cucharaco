@@ -194,9 +194,11 @@ footer {
 
 .slide-track {
     display: flex;
-    width: 400%; /* 100% por cada una de las 4 imágenes en el HTML */
+    width: 400%;
     height: 100%;
-    animation: scroll 25s linear infinite; /* Animación de movimiento */
+    animation: scroll 25s linear infinite;
+    will-change: transform; /* Esto le dice al PC que use la placa de video */
+    backface-visibility: hidden;
 }
 
 .slide {
@@ -208,7 +210,8 @@ footer {
 
 @keyframes scroll {
     0% { transform: translateX(0); }
-    100% { transform: translateX(-75%); } /* Se mueve hasta la última imagen */
+    /* Ajustamos para que el salto no sea brusco en pantallas grandes */
+    100% { transform: translateX(calc(-100% * 3 / 4)); } 
 }
 
 .hero-text {
