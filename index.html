@@ -8,48 +8,55 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Estilos específicos para la nueva navegación dinámica */
+        /* FIX: Navegación Mobile-Friendly */
         .navbar {
             position: fixed; top: 0; left: 0; width: 100%; background: #fff;
             display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 5%; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 10px 20px; z-index: 2000; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        .nav-logo img { height: 45px; }
-        .nav-links { display: flex; gap: 25px; list-style: none; }
+        .nav-logo img { height: 35px; width: auto; }
+        
+        .nav-links { 
+            display: flex; gap: 15px; list-style: none; 
+            overflow-x: auto; white-space: nowrap; padding: 5px 0;
+        }
         .nav-links a { 
             text-decoration: none; color: var(--verde); font-weight: 600; 
-            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;
-            transition: 0.3s;
-        }
-        .nav-links a:hover { color: var(--trigo); }
-        
-        .nav-icons { display: flex; align-items: center; gap: 20px; }
-        .cart-icon { position: relative; cursor: pointer; color: var(--verde); font-size: 1.2rem; }
-        .cart-count { 
-            position: absolute; top: -8px; right: -10px; background: #25D366; 
-            color: white; font-size: 0.6rem; padding: 2px 6px; border-radius: 50%; 
-            font-weight: bold;
+            font-size: 0.7rem; text-transform: uppercase;
         }
 
-        /* Sección Hero con Movimiento */
+        /* FIX: Logo de fondo en Hero */
         .hero-slider {
-            margin-top: 80px; width: 100%; height: 60vh; overflow: hidden; position: relative;
+            margin-top: 60px; width: 100%; height: 70vh; overflow: hidden; position: relative;
+            background-color: var(--verde);
         }
+        .hero-bg-logo {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 80%; max-width: 500px; opacity: 0.15; z-index: 1; pointer-events: none;
+        }
+        
+        /* FIX: Carrusel funcional */
         .slide-track {
             display: flex; width: 300%; height: 100%;
-            animation: scroll 15s linear infinite;
+            animation: scroll 20s linear infinite;
         }
-        .slide { width: 33.33%; height: 100%; object-fit: cover; }
-        
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-66.66%); }
-        }
+        .slide { width: 33.33%; height: 100%; object-fit: cover; filter: brightness(0.7); }
 
         .hero-text {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            text-align: center; color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            background: rgba(27, 48, 34, 0.4); padding: 40px; border-radius: 4px;
+            text-align: center; color: white; z-index: 10; width: 90%;
+        }
+
+        /* Ajustes para Celular */
+        @media (max-width: 600px) {
+            .hero-text h1 { font-size: 2rem !important; }
+            .nav-links { gap: 10px; }
+            .nav-icons { scale: 0.8; }
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-66.66%); }
         }
     </style>
 </head>
@@ -62,50 +69,51 @@
         
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="menu.html">Servicio Escolar</a></li>
-            <li><a href="menu.html">Packs Semanales</a></li>
+            <li><a href="menu.html">Menú</a></li>
             <li><a href="galeria.html">Galería</a></li>
             <li><a href="inscripcion.html">Inscribirse</a></li>
         </ul>
 
-        <div class="nav-icons">
-            <a href="#" style="color: var(--verde); text-decoration: none; font-size: 0.8rem; font-weight: 600;">INGRESAR</a>
-            <div class="cart-icon">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <span class="cart-count">0</span>
+        <div class="nav-icons" style="display: flex; align-items: center; gap: 15px;">
+            <div class="cart-icon" onclick="location.href='inscripcion.html'" style="position: relative; cursor: pointer;">
+                <i class="fa-solid fa-cart-shopping" style="color: var(--verde);"></i>
+                <span style="position: absolute; top: -8px; right: -10px; background: #25D366; color: white; font-size: 0.6rem; padding: 2px 5px; border-radius: 50%;">0</span>
             </div>
         </div>
     </nav>
 
     <section class="hero-slider">
+        <img src="logo-completo.png" class="hero-bg-logo" alt="Fondo Logo">
+        
         <div class="slide-track">
-            <img src="img/plato1.jpg" class="slide" alt="Pasta Parisienne">
-            <img src="img/plato2.jpg" class="slide" alt="Milanesas Gourmet">
-            <img src="img/plato3.jpg" class="slide" alt="Bowl Saludable">
+            <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?q=80&w=1000" class="slide" alt="Plato 1">
+            <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?q=80&w=1000" class="slide" alt="Plato 2">
+            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1000" class="slide" alt="Plato 3">
         </div>
+
         <div class="hero-text">
-            <h1 style="font-family: 'Playfair Display'; font-size: 3rem; margin-bottom: 10px;">Simple. Sano. Tuyo.</h1>
-            <p style="font-family: 'Montserrat'; letter-spacing: 3px; font-weight: 300; text-transform: uppercase;">Viandas premium para Westminster y particulares</p>
+            <h1 style="font-family: 'Playfair Display'; font-size: 3.5rem; margin-bottom: 5px;">Simple. Sano. Tuyo.</h1>
+            <p style="letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem;">Viandas Premium para Westminster y Particulares</p>
             <br>
-            <a href="menu.html" class="btn-primary" style="background: var(--trigo); border-color: var(--trigo);">Explorar Menú</a>
+            <a href="menu.html" class="btn-primary" style="background: var(--trigo); border: none;">EXPLORAR MENÚ</a>
         </div>
     </section>
 
-    <main class="container" style="padding-top: 50px;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-bottom: 80px;">
-            <div style="padding: 20px; border-top: 3px solid var(--trigo); background: white;">
-                <h4 style="font-family: 'Playfair Display'; color: var(--verde); margin-bottom: 15px;">Logística Inteligente</h4>
-                <p style="font-size: 0.85rem; color: #666;">Entregas los domingos en zona Lanús y alrededores para que tu semana arranque organizada y sin estrés.</p>
+    <main class="container" style="padding: 40px 20px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+            <div style="padding: 20px; border-left: 4px solid var(--trigo); background: #fff;">
+                <h4 style="color: var(--verde); font-family: 'Playfair Display';">Logística Inteligente</h4>
+                <p style="font-size: 0.8rem; color: #666;">Entregas los domingos en zona Lanús para organizar tu semana.</p>
             </div>
-            <div style="padding: 20px; border-top: 3px solid var(--trigo); background: white;">
-                <h4 style="font-family: 'Playfair Display'; color: var(--verde); margin-bottom: 15px;">Seguridad Alimentaria</h4>
-                <p style="font-size: 0.85rem; color: #666;">Mantenemos cadena de frío rigurosa. Nuestros envases son BPA-Free, aptos para freezer y calentamiento en microondas.</p>
+            <div style="padding: 20px; border-left: 4px solid var(--trigo); background: #fff;">
+                <h4 style="color: var(--verde); font-family: 'Playfair Display';">Seguridad Total</h4>
+                <p style="font-size: 0.8rem; color: #666;">Envases aptos para microondas con cadena de frío garantizada.</p>
             </div>
         </div>
     </main>
 
-    <footer style="background: var(--verde); color: var(--crema); padding: 40px 0; text-align: center;">
-        <p style="font-size: 0.7rem; letter-spacing: 2px;">© 2026 CUCHARA & CO. - BUENOS AIRES, ARGENTINA</p>
+    <footer style="text-align: center; padding: 30px; font-size: 0.7rem; color: #999;">
+        <p>© 2026 CUCHARA & CO. - BUENOS AIRES, ARGENTINA</p>
     </footer>
 
 </body>
