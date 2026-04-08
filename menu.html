@@ -140,18 +140,32 @@
         </div>
     </main>
 
-    <div id="infoModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <div id="modalBody"></div>
-        </div>
+    <div id="platoModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="cerrarModal()" style="position:absolute; right:20px; top:10px; cursor:pointer; font-size:24px;">&times;</span>
+        <div id="modalBody">
+            </div>
     </div>
+</div>
 
-    <footer style="background: var(--verde);">
-        <p style="letter-spacing: 2px; color: var(--crema); font-size: 0.7rem; font-weight: 600;">© 2026 CUCHARA & CO. — BUENOS AIRES</p>
-    </footer>
+<script>
+function abrirModal(contenido) {
+    document.getElementById('modalBody').innerHTML = contenido;
+    document.getElementById('platoModal').style.display = "block";
+}
 
-    <script>
+function cerrarModal() {
+    document.getElementById('platoModal').style.display = "none";
+}
+
+// Cerrar si hace clic fuera del cuadradito blanco
+window.onclick = function(event) {
+    let modal = document.getElementById('platoModal');
+    if (event.target == modal) {
+        modal.display = "none";
+    }
+}
+</script>
         const infoPlatos = {
             'mila_carne': { titulo: 'Milanesitas de Carne con Puré Mixto', ingredientes: '• Nalga magra tiernizada<br>• Pan rallado premium y huevo<br>• Papa blanca seleccionada<br>• Calabaza asada', nutricion: 'Energía: 520 kcal | Proteína: 35g', alergenos: 'CONTIENE: TRIGO, HUEVO, LECHE.', instrucciones: 'Calentar 4-5 minutos en microondas.' },
             'penne_bolo': { titulo: 'Penne Rigate con Salsa Bolognesa', ingredientes: '• Pasta de sémola de trigo duro<br>• Carne vacuna picada magra<br>• Tomate perita natural', nutricion: 'Energía: 580 kcal | Proteína: 28g', alergenos: 'CONTIENE: TRIGO.', instrucciones: 'Calentar 4 minutos en microondas.' },
