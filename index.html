@@ -4,92 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cuchara & Co. | Simple. Sano. Tuyo.</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        /* Navbar con Glassmorphism suave */
-        .navbar {
-            position: fixed; top: 0; left: 0; width: 100%; background: rgba(255, 255, 255, 0.95);
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 10px 30px; z-index: 3000; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            backdrop-filter: blur(5px);
-        }
-        .nav-logo img { height: 50px; width: auto; transition: 0.3s; }
-        .nav-logo img:hover { transform: scale(1.05); }
-        
-        .nav-links { 
-            display: flex; gap: 20px; list-style: none; 
-            overflow-x: auto; white-space: nowrap; padding: 5px 0;
-            scrollbar-width: none;
-        }
-        .nav-links::-webkit-scrollbar { display: none; }
-        
-        .nav-links a { 
-            text-decoration: none; color: var(--verde); font-weight: 600; 
-            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;
-            transition: 0.3s;
-        }
-        .nav-links a:hover { color: var(--trigo); }
-
-        /* Hero Slider Dinámico */
-        .hero-slider {
-            margin-top: 70px; width: 100%; height: 80vh; overflow: hidden; position: relative;
-            background-color: var(--verde);
-        }
-        .hero-bg-logo {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 80%; max-width: 500px; opacity: 0.12; z-index: 1; pointer-events: none;
-        }
-        
-        .slide-track {
-            display: flex; width: 300%; height: 100%;
-            animation: scroll 30s linear infinite;
-        }
-        .slide { width: 33.33%; height: 100%; object-fit: cover; filter: brightness(0.6); }
-
-        .hero-text {
-            position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%);
-            text-align: center; color: white; z-index: 10; width: 90%;
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-66.66%); }
-        }
-
-        /* Responsive Mobile */
-        @media (max-width: 800px) {
-            .navbar { padding: 10px 15px; }
-            .nav-logo img { height: 40px; }
-            .hero-text h1 { font-size: 2.5rem !important; }
-            .hero-text p { font-size: 0.7rem !important; letter-spacing: 1.5px !important; }
-            .hero-slider { height: 70vh; }
-        }
-    </style>
 </head>
 <body class="home-v2">
 
-    <nav class="navbar">
-        <div class="nav-logo">
-            <a href="index.html"><img src="logo-completo.png" alt="Cuchara & Co. Logo"></a>
+    <header class="main-header">
+        <div class="logo-container-central">
+            <a href="index.html">
+                <img src="logo-completo.png" alt="Cuchara & Co. Logo">
+            </a>
         </div>
         
-        <ul class="nav-links">
-            <li><a href="index.html" style="color: var(--trigo);">Home</a></li>
-            <li><a href="menu.html">Menú</a></li>
-            <li><a href="galeria.html">Galería</a></li>
-            <li><a href="inscripcion.html">Inscribirse</a></li>
-        </ul>
+        <nav class="nav-menu-central">
+            <ul class="nav-links">
+                <li><a href="index.html" style="color: var(--trigo);">Home</a></li>
+                <li><a href="menu.html">Menú</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="inscripcion.html">Inscribirse</a></li>
+                <li>
+                    <a href="inscripcion.html" class="cart-link">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
-        <div class="nav-icons">
-            <div class="cart-icon" onclick="location.href='inscripcion.html'" style="position: relative; cursor: pointer; color: var(--verde); font-size: 1.1rem;">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-        </div>
-    </nav>
-
-    <section class="hero-slider">
+    <section class="hero-slider" style="margin-top: 0; height: 75vh;">
         <img src="logo-completo.png" class="hero-bg-logo" alt="Fondo Marca de Agua">
         
         <div class="slide-track">
@@ -98,31 +43,34 @@
             <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1200" class="slide" alt="Bowl Saludable">
         </div>
 
-        <div class="hero-text">
-            <h1 style="font-family: 'Playfair Display'; font-size: 4rem; margin-bottom: 5px; line-height: 1.1;">Simple. Sano. Tuyo.</h1>
-            <p style="letter-spacing: 3px; text-transform: uppercase; font-size: 0.85rem; font-weight: 300; opacity: 0.9;">Viandas Institucionales y Particulares</p>
+        <div class="hero-text" style="top: 50%;">
+            <h1 style="font-family: 'Playfair Display'; font-size: 4rem; margin-bottom: 10px; line-height: 1.1; text-shadow: 2px 2px 10px rgba(0,0,0,0.3);">Simple. Sano. Tuyo.</h1>
+            <p style="letter-spacing: 4px; text-transform: uppercase; font-size: 0.9rem; font-weight: 300; opacity: 0.95;">Viandas Institucionales y Particulares</p>
             <br><br>
-            <a href="menu.html" class="btn-primary" style="background: var(--trigo); border: none;">EXPLORAR MENÚ</a>
+            <a href="menu.html" class="btn-primary">EXPLORAR MENÚ</a>
         </div>
     </section>
 
     <main class="container" style="padding: 80px 20px;">
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px;">
-            <div style="padding: 30px; border-top: 4px solid var(--trigo); background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.03); text-align: center;">
-                <i class="fa-solid fa-truck-fast" style="color: var(--trigo); font-size: 1.5rem; margin-bottom: 15px;"></i>
-                <h4 style="color: var(--verde); font-family: 'Playfair Display'; margin-bottom: 15px; font-size: 1.2rem;">Logística Westminster</h4>
-                <p style="font-size: 0.85rem; color: #666; line-height: 1.6;">Entregas programadas para simplificar la rutina de las familias del colegio.</p>
+            
+            <div style="padding: 40px 30px; border-top: 4px solid var(--trigo); background: #fff; box-shadow: 0 15px 35px rgba(0,0,0,0.04); text-align: center; border-radius: 0 0 8px 8px;">
+                <i class="fa-solid fa-truck-fast" style="color: var(--trigo); font-size: 1.8rem; margin-bottom: 20px;"></i>
+                <h4 style="color: var(--verde); font-family: 'Playfair Display'; margin-bottom: 15px; font-size: 1.4rem;">Logística Westminster</h4>
+                <p style="font-size: 0.9rem; color: #666; line-height: 1.7;">Entregas programadas diseñadas para integrarse sin fricciones en la rutina de las familias del colegio.</p>
             </div>
-            <div style="padding: 30px; border-top: 4px solid var(--trigo); background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.03); text-align: center;">
-                <i class="fa-solid fa-shield-heart" style="color: var(--trigo); font-size: 1.5rem; margin-bottom: 15px;"></i>
-                <h4 style="color: var(--verde); font-family: 'Playfair Display'; margin-bottom: 15px; font-size: 1.2rem;">Calidad Certificada</h4>
-                <p style="font-size: 0.85rem; color: #666; line-height: 1.6;">Procesos de cocción controlados y envases de alta densidad libres de toxinas.</p>
+
+            <div style="padding: 40px 30px; border-top: 4px solid var(--trigo); background: #fff; box-shadow: 0 15px 35px rgba(0,0,0,0.04); text-align: center; border-radius: 0 0 8px 8px;">
+                <i class="fa-solid fa-shield-heart" style="color: var(--trigo); font-size: 1.8rem; margin-bottom: 20px;"></i>
+                <h4 style="color: var(--verde); font-family: 'Playfair Display'; margin-bottom: 15px; font-size: 1.4rem;">Calidad Certificada</h4>
+                <p style="font-size: 0.9rem; color: #666; line-height: 1.7;">Procesos térmicos controlados y envases de alta densidad, garantizando una alimentación libre de toxinas.</p>
             </div>
+
         </div>
     </main>
 
-    <footer style="text-align: center; padding: 60px 20px; background: var(--verde);">
-        <p style="letter-spacing: 2px; color: var(--crema); font-size: 0.65rem; font-weight: 600;">© 2026 CUCHARA & CO. — BUENOS AIRES</p>
+    <footer style="background: var(--verde);">
+        <p style="letter-spacing: 2px; color: var(--crema); font-size: 0.7rem; font-weight: 600;">© 2026 CUCHARA & CO. — BUENOS AIRES</p>
     </footer>
 
 </body>
