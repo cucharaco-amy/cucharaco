@@ -148,11 +148,43 @@ footer { text-align: center; padding: 60px 40px; font-size: 0.7rem; color: #aaa;
 .modal-body h4 { font-size: 0.75rem; text-transform: uppercase; color: var(--trigo); margin: 15px 0 5px; letter-spacing: 1px; }
 .modal-body p { font-size: 0.9rem; color: #555; margin-bottom: 10px; }
 
-/* MOBILE RESPONSIVE */
+/* ============================================================
+   AJUSTES RESPONSIVE PARA NAVBAR E-COMMERCE (MÓVIL)
+   ============================================================ */
 @media (max-width: 800px) {
-    .menu-grid { grid-template-columns: 1fr; max-width: 450px; padding: 0 10px; }
-    .section-title { font-size: 1.8rem; margin: 40px 0 20px; }
-    .modal-content { margin: 20% auto; padding: 20px; }
+    /* Ajuste de Navbar */
+    .navbar {
+        padding: 10px 15px !important;
+        flex-direction: row !important; /* Mantenemos logo y links en la misma linea */
+    }
+    
+    /* Logo más chico en móvil para que entren los links */
+    .nav-logo img {
+        height: 35px !important;
+    }
+
+    /* FIX DE SCROLL LATERAL EN MENÚ */
+    .nav-links {
+        gap: 12px !important;
+        overflow-x: auto !important; /* Permite scroll horizontal si no entran */
+        white-space: nowrap !important; /* No rompe línea */
+        padding: 5px 0 !important;
+        -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+        scrollbar-width: none; /* Oculta scrollbar en Firefox */
+    }
+    .nav-links::-webkit-scrollbar {
+        display: none; /* Oculta scrollbar en Chrome/Safari */
+    }
+
+    .nav-links a {
+        font-size: 0.65rem !important; /* Fuente más chica */
+    }
+
+    /* Iconos más chicos */
+    .nav-icons {
+        scale: 0.8 !important;
+        gap: 10px !important;
+    }
 }
 
 /* GALERÍA */
