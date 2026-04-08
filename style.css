@@ -15,206 +15,154 @@ body {
     background-color: var(--crema);
     color: var(--texto);
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
-.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-
-/* --- NUEVO HEADER CENTRALIZADO (REEMPLAZA NAVBAR GLOBAL) --- */
+/* --- HEADER CENTRALIZADO --- */
 .main-header {
     background-color: var(--blanco);
-    padding: 60px 20px 30px; /* Espacio generoso para el logo */
+    padding: 40px 20px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-bottom: 1px solid rgba(197, 160, 89, 0.2); /* Un toque sutil de color trigo */
+    border-bottom: 1px solid rgba(197, 160, 89, 0.1);
     width: 100%;
-}
-
-.logo-container-central {
-    margin-bottom: 35px;
-    text-align: center;
 }
 
 .logo-container-central img {
-    height: 140px; /* Logo grande y muy visible como pediste */
+    height: 120px;
     width: auto;
-    transition: transform 0.3s ease;
+    margin-bottom: 20px;
 }
 
-.logo-container-central img:hover {
-    transform: scale(1.03);
-}
-
-.nav-menu-central {
-    width: 100%;
-}
-
-.nav-menu-central .nav-links {
+.nav-links {
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 30px;
     list-style: none;
-    padding: 0;
 }
 
-.nav-menu-central .nav-links a {
+.nav-links a {
     text-decoration: none;
     color: var(--verde);
     font-weight: 600;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     transition: 0.3s;
 }
 
-.nav-menu-central .nav-links a:hover {
+/* --- HERO SLIDER --- */
+.hero-slider {
+    position: relative;
+    height: 70vh;
+    width: 100%;
+    overflow: hidden;
+    background: #000;
+}
+
+.slide-track {
+    display: flex;
+    width: 300%;
+    height: 100%;
+    animation: scroll 20s linear infinite;
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6; /* Oscurece para que se lea el texto */
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-66.6%); }
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    width: 90%;
+    z-index: 10;
+}
+
+.hero-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    margin-bottom: 10px;
+}
+
+.hero-bg-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 80%;
+    opacity: 0.05;
+    pointer-events: none;
+}
+
+/* --- GRID DE CARACTERISTICAS --- */
+.container {
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    background: var(--blanco);
+    padding: 40px;
+    text-align: center;
+    border-top: 4px solid var(--trigo);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.feature-card i {
+    font-size: 2rem;
     color: var(--trigo);
+    margin-bottom: 20px;
 }
 
-/* --- AJUSTE DE CONTENIDO --- */
-/* Ya no necesitamos margin-top de 100px porque el header fluye naturalmente */
-main {
-    margin-top: 20px;
-}
-
-/* --- LANDING --- */
-.central-logo { width: 100%; max-width: 550px; height: auto; margin-bottom: 40px; }
-
-/* --- COMPONENTES COMUNES --- */
+/* --- BOTONES & FOOTER --- */
 .btn-primary {
     display: inline-block;
     background-color: var(--trigo);
     color: white;
-    padding: 18px 40px;
+    padding: 15px 35px;
     text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 2px;
     font-weight: 600;
     font-size: 0.8rem;
-    transition: all 0.3s ease;
-    border: 2px solid var(--trigo);
-    cursor: pointer;
+    letter-spacing: 2px;
+    margin-top: 20px;
 }
 
-.btn-primary:hover { 
-    background-color: transparent; 
-    color: var(--trigo); 
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+.main-footer {
+    background: var(--verde);
+    padding: 40px;
+    text-align: center;
+    margin-top: 60px;
 }
 
-.section-title { 
-    text-align: center; 
-    font-family: 'Playfair Display', serif; 
-    font-size: 2.8rem; 
-    color: var(--verde); 
-    margin: 50px 0; 
+.main-footer p {
+    color: var(--crema);
+    font-size: 0.7rem;
+    letter-spacing: 2px;
 }
 
-/* --- PÁGINA DE MENÚ --- */
-.menu-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-    max-width: 950px;
-    margin: 20px auto 50px;
-}
-
-.menu-card {
-    background: var(--blanco);
-    padding: 35px;
-    border: 1px solid #eee;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.02);
-    transition: transform 0.3s ease;
-    border-radius: 4px;
-}
-
-.menu-card:hover { transform: translateY(-5px); }
-.menu-card h3 { 
-    font-family: 'Playfair Display', serif; 
-    color: var(--verde); 
-    border-bottom: 1px solid var(--trigo); 
-    padding-bottom: 10px; 
-    margin-bottom: 20px; 
-}
-
-/* LISTAS DE PLATOS */
-ul { list-style: none; padding: 0; }
-li { 
-    margin-bottom: 12px; 
-    font-size: 0.9rem; 
-    border-bottom: 1px solid #f9f9f9; 
-    padding-bottom: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-li strong { color: var(--verde); display: block; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 2px; }
-
-/* --- GALERÍA --- */
-.gallery-container { padding: 30px 0; }
-.photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-.photo-item { 
-    position: relative; 
-    overflow: hidden; 
-    border-radius: 4px; 
-    height: 300px; 
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08); 
-}
-.photo-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-.photo-item:hover img { transform: scale(1.05); }
-
-.photo-overlay { 
-    position: absolute; 
-    bottom: 0; left: 0; right: 0; 
-    background: linear-gradient(transparent, rgba(27, 48, 34, 0.9)); 
-    color: white; 
-    padding: 20px 15px; 
-}
-
-/* --- MODALES --- */
-.modal {
-    display: none;
-    position: fixed; z-index: 3000;
-    left: 0; top: 0; width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.7);
-    backdrop-filter: blur(4px);
-}
-.modal-content {
-    background-color: var(--blanco);
-    margin: 5% auto; padding: 40px;
-    width: 90%; max-width: 550px;
-    border-radius: 8px; position: relative;
-}
-
-/* --- FOOTER --- */
-footer { 
-    text-align: center; 
-    padding: 80px 40px; 
-    font-size: 0.7rem; 
-    color: #999; 
-    text-transform: uppercase; 
-    letter-spacing: 2px; 
-}
-
-/* --- RESPONSIVE MOBILE --- */
-@media (max-width: 800px) {
-    .main-header { padding: 40px 15px 20px; }
-    
-    .logo-container-central img { height: 90px; } /* Ajuste para móvil */
-    
-    .logo-container-central { margin-bottom: 20px; }
-
-    .nav-menu-central .nav-links {
-        gap: 15px;
-        flex-wrap: wrap; /* Para que no se rompa en pantallas chicas */
-    }
-    
-    .nav-menu-central .nav-links a { font-size: 0.7rem; letter-spacing: 1px; }
-
-    .menu-grid { grid-template-columns: 1fr; padding: 0 10px; }
-    .section-title { font-size: 2.2rem; }
-    
-    .photo-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    .photo-item { height: 180px; }
+/* --- MOBILE --- */
+@media (max-width: 768px) {
+    .logo-container-central img { height: 80px; }
+    .nav-links { gap: 15px; flex-wrap: wrap; }
+    .hero-slider { height: 60vh; }
 }
