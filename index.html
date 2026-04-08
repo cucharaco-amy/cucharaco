@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="home-v2">
+<body class="home-page">
 
     <header class="main-header">
         <div class="logo-container-central">
@@ -25,14 +25,40 @@
                 <li><a href="menu.html">Menú</a></li>
                 <li><a href="galeria.html">Galería</a></li>
                 <li><a href="inscripcion.html">Inscribirse</a></li>
-                <li>
-                    <a href="inscripcion.html" class="cart-link">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
-                </li>
             </ul>
         </nav>
     </header>
+
+    <main class="container">
+        <section class="hero-section">
+             </section>
+    </main>
+
+    ```
+
+---
+
+### 2. Ajuste Crítico en tu `style.css`
+Para evitar que el logo se vea gigante o se desplace en pantallas muy anchas, agregá estas dos reglas al final de tu archivo CSS. Esto forzará al header a comportarse como un bloque único:
+
+```css
+/* FIX DE EMERGENCIA PARA EL LAYOUT */
+.home-page {
+    display: block; /* Asegura que no haya un flex accidental en el body */
+    width: 100%;
+}
+
+.main-header {
+    position: relative; /* Evita que flote sobre el carrusel si no lo deseas */
+    z-index: 1000;
+}
+
+/* Si el logo desaparece o se ve mal, asegúrate de que el contenedor no lo oculte */
+.logo-container-central {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
 
     <section class="hero-slider" style="margin-top: 0; height: 75vh;">
         <img src="logo-completo.png" class="hero-bg-logo" alt="Fondo Marca de Agua">
