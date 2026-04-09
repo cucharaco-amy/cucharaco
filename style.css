@@ -212,26 +212,69 @@ footer {
 }
 
 /* --- HERO SLIDER ANIMATION --- */
+/* --- HERO SLIDER REPARADO --- */
 .hero-slider {
     position: relative;
-    height: 75vh;
+    height: 70vh; /* Alto equilibrado para PC y Celular */
     width: 100%;
     overflow: hidden;
-    background: var(--verde); /* Color de respaldo si la foto tarda en cargar */
+    background-color: var(--verde); /* Solo se ve si fallan las fotos */
 }
 
 .slide-track {
     display: flex;
-    width: 500%; /* Ajustado para 5 imágenes (4 + 1 repetida) */
+    width: 500%; /* Para 5 fotos (4 + 1 repetida) */
     height: 100%;
     animation: scroll 25s linear infinite;
 }
 
 .slide {
-    width: 20%; /* Cada imagen ocupa el 20% de la pista de 500% */
+    width: 20%; 
     height: 100%;
-    object-fit: cover; /* Esto evita que la imagen se estire o se vea mal */
-    opacity: 0.6; /* Oscurece un poco para que el texto blanco se lea perfecto */
+    object-fit: cover;
+    opacity: 0.5; /* Esto es clave: oscurece la foto para que el texto resalte */
+}
+
+/* Marca de agua - LA AJUSTAMOS PARA QUE NO TAPE */
+.hero-bg-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 60%;
+    width: auto;
+    opacity: 0.15; /* Muy sutil */
+    pointer-events: none;
+    z-index: 2; /* Por encima de las fotos, debajo del texto */
+}
+
+.hero-text {
+    position: absolute;
+    top: 55%; /* Bajamos un poco el texto para no tapar el centro del logo */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 10;
+    width: 90%;
+    background: none !important; /* Eliminamos cualquier fondo accidental */
+}
+
+.hero-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.7); /* Sombra para legibilidad */
+    margin-bottom: 20px;
+}
+
+/* AJUSTE PARA CELULARES */
+@media (max-width: 600px) {
+    .hero-slider {
+        height: 60vh; /* Un poco más bajo en móvil para que se vea el menú */
+    }
+    .hero-bg-logo {
+        height: 40%; /* Logo más chico en móvil */
+    }
 }
 
 @keyframes scroll {
