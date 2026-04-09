@@ -37,24 +37,38 @@ body {
     margin-bottom: 20px;
 }
 
+/* --- NAVEGACIÓN UNIFICADA (TEXTO + CARRITO + WHATSAPP) --- */
 .nav-links {
     display: flex;
-    justify-content: center;
-    gap: 30px;
+    align-items: center; /* Centra verticalmente texto e íconos */
+    gap: 25px;           /* Espacio equilibrado entre ítems */
     list-style: none;
 }
 
-.nav-links a {
-    text-decoration: none;
-    color: var(--verde);
-    font-weight: 600;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    transition: 0.3s;
+.nav-links i {
+    font-size: 1.2rem;   /* Tamaño ideal para los íconos */
+    transition: transform 0.3s ease;
+    display: flex;       /* Ayuda a que el ícono se centre bien */
 }
 
-.nav-links a:hover { color: var(--trigo); }
+/* Efecto hover general para los íconos */
+.nav-links a:hover i {
+    transform: scale(1.2);
+}
+
+/* Color específico para el CARRITO */
+.cart-link i {
+    color: var(--verde);
+}
+
+/* Color específico para WHATSAPP */
+.nav-whatsapp i {
+    color: #25D366; /* Verde original de WhatsApp */
+}
+
+.nav-whatsapp:hover i {
+    color: #128C7E; /* Verde oscuro al pasar el mouse */
+}
 
 /* --- SECCIÓN MENÚ & CUADRÍCULA --- */
 .section-title {
