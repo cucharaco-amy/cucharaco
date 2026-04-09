@@ -113,6 +113,18 @@ body {
     font-size: 0.9rem;
 }
 
+/* Botones generales */
+.btn-primary {
+    background-color: var(--verde);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+    display: inline-block;
+}
+
 .info-btn {
     color: var(--trigo);
     font-weight: 600;
@@ -172,6 +184,7 @@ body {
     border-radius: 12px;
     position: relative;
     border-top: 6px solid var(--trigo);
+    text-align: center; /* Asegura que el texto informativo esté centrado */
 }
 
 .close-button {
@@ -197,13 +210,14 @@ footer {
     .menu-grid { grid-template-columns: 1fr; }
     .section-title { font-size: 2rem; }
 }
+
 /* --- HERO SLIDER ANIMATION --- */
 .hero-slider {
     position: relative;
     height: 75vh;
     width: 100%;
     overflow: hidden;
-    background: #000; /* Fondo negro por si las fotos tardan en cargar */
+    background: #000;
 }
 
 .slide-track {
@@ -211,7 +225,7 @@ footer {
     width: 400%;
     height: 100%;
     animation: scroll 25s linear infinite;
-    will-change: transform; /* Esto le dice al PC que use la placa de video */
+    will-change: transform;
     backface-visibility: hidden;
 }
 
@@ -219,12 +233,11 @@ footer {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.7; /* Oscurecemos las fotos para que el texto blanco resalte */
+    opacity: 0.7;
 }
 
 @keyframes scroll {
     0% { transform: translateX(0); }
-    /* Ajustamos para que el salto no sea brusco en pantallas grandes */
     100% { transform: translateX(calc(-100% * 3 / 4)); } 
 }
 
@@ -244,18 +257,6 @@ footer {
     font-size: clamp(2.5rem, 8vw, 4rem);
     text-shadow: 2px 2px 15px rgba(0,0,0,0.5);
     margin-bottom: 10px;
-}
-
-/* Marca de agua sutil en el fondo */
-.hero-bg-logo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 70%;
-    opacity: 0.08;
-    pointer-events: none;
-    z-index: 1;
 }
 
 /* --- FEATURES GRID (LANÚS/BANFIELD) --- */
@@ -281,4 +282,17 @@ footer {
     font-size: 2.5rem;
     color: var(--trigo);
     margin-bottom: 20px;
+}
+
+/* --- ESTILOS DE LA SECCIÓN DE CARRITO (NUEVO) --- */
+#seccionCarrito .btn-primary:hover {
+    background-color: #128C7E !important;
+    border-color: #128C7E !important;
+    transform: scale(1.02);
+}
+
+#cantSemanas:focus {
+    outline: none;
+    border-color: var(--verde);
+    box-shadow: 0 0 5px rgba(27, 48, 34, 0.2);
 }

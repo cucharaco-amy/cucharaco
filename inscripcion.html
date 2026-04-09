@@ -27,6 +27,10 @@
         .row .form-group { flex: 1; }
         .hidden { display: none; }
 
+        /* Estilos para el Carrito y Modal */
+        #seccionCarrito { border-radius: 8px; overflow: hidden; }
+        #cantSemanas:focus { border-color: var(--verde); outline: none; }
+
         @media (max-width: 800px) {
             .row { flex-direction: column; gap: 0; }
         }
@@ -42,25 +46,23 @@
         </div>
         
         <nav class="nav-menu-central">
-    <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="menu.html">Menú</a></li>
-        <li><a href="galeria.html">Galería</a></li>
-        <li><a href="inscripcion.html" style="color: var(--trigo);">Inscribirse</a></li>
-        
-        <li>
-            <a href="inscripcion.html" class="cart-link">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </a>
-        </li>
-
-        <li>
-            <a href="https://wa.me/5491131445518" target="_blank" class="nav-whatsapp">
-                <i class="fa-brands fa-whatsapp" style="color: #25D366;"></i>
-            </a>
-        </li>
-    </ul>
-</nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menú</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="inscripcion.html" style="color: var(--trigo);">Inscribirse</a></li>
+                <li>
+                    <a href="inscripcion.html" class="cart-link">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://wa.me/5491131445518" target="_blank" class="nav-whatsapp">
+                        <i class="fa-brands fa-whatsapp" style="color: #25D366;"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </header>
 
     <main class="container">
@@ -82,7 +84,7 @@
                     <div class="form-section"><h3>Datos del Cliente</h3></div>
                     <div class="form-group">
                         <label>Nombre y Apellido del Responsable</label>
-                        <input type="text" name="Responsable_Nombre" required placeholder="Nombre completo">
+                        <input type="text" name="Responsable_Nombre" id="inputNombreResponsable" required placeholder="Nombre completo">
                     </div>
                     <div class="row">
                         <div class="form-group">
@@ -137,14 +139,14 @@
                     <div class="row">
                         <div class="form-group">
                             <label>Plan Elegido</label>
-                            <select name="Servicio_Plan">
+                            <select name="Servicio_Plan" id="selectorPlan" required>
                                 <option value="Promo Lanzamiento">Promo Lanzamiento (Westminster)</option>
                                 <option value="Pack Semanal">Pack Semanal Particular</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Método de Pago</label>
-                            <select name="Servicio_Pago" required>
+                            <select name="Servicio_Pago" id="selectorPago" required>
                                 <option value="Transferencia">Transferencia</option>
                                 <option value="Efectivo">Efectivo</option>
                             </select>
@@ -157,6 +159,37 @@
                 </form>
             </div>
         </div>
+
+        <div id="modalInfoPlanes" class="modal">
+            <div class="modal-content">
+                <span class="close-button" onclick="confirmarYIrAlCarrito()">&times;</span>
+                <div id="infoPlanDinamica">
+                    </div>
+                <button type="button" class="btn-primary" onclick="confirmarYIrAlCarrito()" style="width: 100%; margin-top: 20px; border: none; cursor: pointer;">CONFIRMAR Y CONTINUAR</button>
+            </div>
+        </div>
+
+        <section id="seccionCarrito" class="container" style="display: none; margin-top: 50px; padding-bottom: 50px;">
+            <h2 class="section-title">Resumen de tu Pedido</h2>
+            <div class="menu-card" style="max-width: 600px; margin: 0 auto; border-top: 5px solid var(--trigo); background: white; padding: 30px;">
+                <div id="detalleItems"></div>
+                <hr style="margin: 20px 0; opacity: 0.1;">
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <label style="font-weight: 600; color: #333;">Semanas a adquirir:</label>
+                    <input type="number" id="cantSemanas" value="1" min="1" onchange="actualizarTotal()" style="width: 70px; padding: 8px; border: 1px solid var(--trigo); text-align: center;">
+                </div>
+
+                <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 1.4rem; color: var(--verde); background: #f9f9f9; padding: 15px;">
+                    <span>TOTAL:</span>
+                    <span id="montoTotal">$0</span>
+                </div>
+
+                <button type="button" class="btn-primary" onclick="enviarPedidoWhatsApp()" style="width: 100%; margin-top: 30px; background-color: #25D366; border: none; color: white; cursor: pointer; padding: 20px;">
+                    <i class="fa-brands fa-whatsapp"></i> FINALIZAR Y ENVIAR PEDIDO
+                </button>
+            </div>
+        </section>
     </main>
 
     <footer style="background: var(--verde);">
@@ -164,6 +197,9 @@
     </footer>
 
     <script>
+        let precioSemanal = 0;
+        let planFinal = "";
+
         function toggleCampos() {
             const servicio = document.getElementById('selectorServicio').value;
             const seccionAlumno = document.getElementById('seccionAlumno');
@@ -184,36 +220,115 @@
 
         window.onload = toggleCampos;
 
+        // Al hacer Submit, primero enviamos a Google Sheets y LUEGO mostramos el popup
         document.getElementById('inscriptionForm').onsubmit = function(e) {
             e.preventDefault();
             const form = e.target;
             const btnSubmit = form.querySelector('button[type="submit"]');
+            
+            // Bloqueamos botón mientras procesa Google Sheets
             btnSubmit.disabled = true;
-            btnSubmit.innerText = "PROCESANDO SOLICITUD...";
+            btnSubmit.innerText = "PROCESANDO DATOS...";
 
             const formData = new FormData(form);
             fetch(form.action, { method: 'POST', body: new URLSearchParams(formData) })
             .then(response => response.text())
             .then(result => {
                 if (result === "CUPO_LLENO") {
-                    alert("Lo sentimos, hemos alcanzado el cupo máximo para esta promoción.");
+                    alert("Lo sentimos, hemos alcanzado el cupo máximo.");
+                    btnSubmit.disabled = false;
+                    btnSubmit.innerText = "CONFIRMAR ALTA DE SERVICIO";
                 } else {
-                    const responsable = form.Responsable_Nombre.value;
-                    const mensajeWS = `*Nueva Inscripción - Cuchara %26 Co*%0A*Cliente:* ${responsable}`;
-                    window.open(`https://wa.me/5491131445518?text=${mensajeWS}`, '_blank');
-                    alert("¡Inscripción registrada con éxito! Nos contactaremos a la brevedad.");
-                    form.reset();
-                    toggleCampos();
+                    // Si Google Sheets salió bien, preparamos el Popup
+                    prepararPopup();
                 }
-                btnSubmit.disabled = false;
-                btnSubmit.innerText = "CONFIRMAR ALTA DE SERVICIO";
             })
             .catch(() => {
-                alert("Hubo un error al procesar la inscripción. Por favor, intenta de nuevo o contáctanos por WhatsApp.");
-                btnSubmit.disabled = false;
-                btnSubmit.innerText = "CONFIRMAR ALTA DE SERVICIO";
+                alert("Error al registrar datos. Se procederá con el pedido igualmente.");
+                prepararPopup();
             });
         };
+
+        function prepararPopup() {
+            const plan = document.getElementById('selectorPlan').value;
+            const infoDiv = document.getElementById('infoPlanDinamica');
+            planFinal = plan;
+
+            if (plan === "Promo Lanzamiento") {
+                precioSemanal = 30000;
+                infoDiv.innerHTML = `
+                    <h2 style="color:var(--verde); font-family:'Playfair Display'; margin-bottom:15px;">Plan Lanzamiento Westminster</h2>
+                    <p><strong>Costo por vianda:</strong> $6.000</p>
+                    <p><strong>Costo Semanal (5 días):</strong> $30.000</p>
+                    <p style="margin-top:10px;"><strong>Cierre de pedidos:</strong> Miércoles 20:00 hs.</p>
+                    <p><strong>Día de entrega:</strong> Domingos por la tarde.</p>
+                `;
+            } else {
+                precioSemanal = 37500;
+                infoDiv.innerHTML = `
+                    <h2 style="color:var(--verde); font-family:'Playfair Display'; margin-bottom:15px;">Plan Semanal Particular</h2>
+                    <p><strong>Costo por vianda:</strong> $7.500</p>
+                    <p><strong>Costo Semanal (5 días):</strong> $37.500</p>
+                    <p style="margin-top:10px;"><strong>Cierre de pedidos:</strong> Miércoles 20:00 hs.</p>
+                    <p><strong>Día de entrega:</strong> Domingos por la tarde.</p>
+                `;
+            }
+
+            document.getElementById('modalInfoPlanes').style.display = "block";
+        }
+
+        function confirmarYIrAlCarrito() {
+            document.getElementById('modalInfoPlanes').style.display = "none";
+            document.getElementById('seccionCarrito').style.display = "block";
+            actualizarTotal();
+            document.getElementById('seccionCarrito').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function actualizarTotal() {
+            const semanas = document.getElementById('cantSemanas').value;
+            const total = semanas * precioSemanal;
+            
+            document.getElementById('detalleItems').innerHTML = `
+                <p style="font-size: 1.1rem; margin-bottom: 5px;"><strong>${planFinal}</strong></p>
+                <p style="color: #666; font-size: 0.9rem;">Costo semanal: $${precioSemanal.toLocaleString('es-AR')}</p>
+            `;
+            document.getElementById('montoTotal').innerText = `$${total.toLocaleString('es-AR')}`;
+        }
+
+        function enviarPedidoWhatsApp() {
+            const form = document.getElementById('inscriptionForm');
+            const responsable = document.getElementById('inputNombreResponsable').value;
+            const semanas = document.getElementById('cantSemanas').value;
+            const total = semanas * precioSemanal;
+            const pago = document.getElementById('selectorPago').value;
+            
+            const mensajeWS = `*Pedido de Inscripción - Cuchara %26 Co*%0A` +
+                              `*Cliente:* ${responsable}%0A` +
+                              `*Plan:* ${planFinal}%0A` +
+                              `*Semanas:* ${semanas}%0A` +
+                              `*Total:* $${total.toLocaleString('es-AR')}%0A` +
+                              `*Método de Pago:* ${pago}%0A%0A` +
+                              `_Por favor, envíenme los datos para concretar el pago._`;
+
+            window.open(`https://wa.me/5491131445518?text=${mensajeWS}`, '_blank');
+            alert("¡Pedido enviado por WhatsApp!");
+            
+            // Opcional: resetear todo
+            form.reset();
+            document.getElementById('seccionCarrito').style.display = "none";
+            const btnSubmit = form.querySelector('button[type="submit"]');
+            btnSubmit.disabled = false;
+            btnSubmit.innerText = "CONFIRMAR ALTA DE SERVICIO";
+            toggleCampos();
+        }
+
+        // Si cierran el modal clickeando afuera, igual van al carrito (según tu pedido)
+        window.onclick = function(event) {
+            const modal = document.getElementById('modalInfoPlanes');
+            if (event.target == modal) {
+                confirmarYIrAlCarrito();
+            }
+        }
     </script>
 </body>
 </html>
