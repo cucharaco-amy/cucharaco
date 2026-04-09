@@ -217,23 +217,21 @@ footer {
     height: 75vh;
     width: 100%;
     overflow: hidden;
-    background: #000;
+    background: var(--verde); /* Color de respaldo si la foto tarda en cargar */
 }
 
 .slide-track {
     display: flex;
-    width: 400%;
+    width: 500%; /* Ajustado para 5 imágenes (4 + 1 repetida) */
     height: 100%;
     animation: scroll 25s linear infinite;
-    will-change: transform;
-    backface-visibility: hidden;
 }
 
 .slide {
-    width: 100%;
+    width: 20%; /* Cada imagen ocupa el 20% de la pista de 500% */
     height: 100%;
-    object-fit: cover;
-    opacity: 0.7;
+    object-fit: cover; /* Esto evita que la imagen se estire o se vea mal */
+    opacity: 0.6; /* Oscurece un poco para que el texto blanco se lea perfecto */
 }
 
 @keyframes scroll {
