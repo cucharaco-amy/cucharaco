@@ -1,4 +1,4 @@
-const SCRIPT_URL = "TU_URL_DE_APPS_SCRIPT";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx1AqF13kEZrUyiqZ-Dgrmthn7t3xqz7ogv1deQsnPUtHWwQp9XxINjsIPlp_LhdQgA/exec";
 
 async function verificarCupo() {
     try {
