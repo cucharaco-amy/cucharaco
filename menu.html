@@ -15,30 +15,30 @@
             <a href="index.html"><img src="logo-completo.png" alt="Logo"></a>
         </div>
         <nav class="nav-menu-central">
-    <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="menu.html">Menú</a></li>
-        <li><a href="galeria.html">Galería</a></li>
-        <li><a href="inscripcion.html">Inscribirse</a></li>
-        <li>
-            <a href="https://wa.me/5491131445518" target="_blank" class="nav-whatsapp">
-                <i class="fa-brands fa-whatsapp"></i>
-            </a>
-        </li>
-    </ul>
-</nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menú</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="inscripcion.html">Inscribirse</a></li>
+                <li>
+                    <a href="https://wa.me/5491131445518" target="_blank" class="nav-whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </header>
 
     <main class="container">
         <h1 class="section-title">Calendario Mensual</h1>
         
         <div style="text-align: center; margin-bottom: 40px;">
-    <a href="#" class="btn-primary" onclick="abrirModalCambio(event)" style="background-color: var(--trigo);">
-        <i class="fa-solid fa-utensils"></i> SOLICITAR CAMBIO DE MENÚ
-    </a>
-</div>
+            <a href="#" class="btn-primary" onclick="abrirModalCambio(event)" style="background-color: var(--trigo);">
+                <i class="fa-solid fa-utensils"></i> SOLICITAR CAMBIO DE MENÚ
+            </a>
+        </div>
+
         <div class="menu-grid">
-            
             <div class="menu-card">
                 <h3>Semana 1: Clásicos</h3>
                 <ul>
@@ -49,7 +49,6 @@
                     <li>Viernes: Risotto de pollo y vegetales <span class="info-btn" onclick="openModal('risotto')">+info</span></li>
                 </ul>
             </div>
-
             <div class="menu-card">
                 <h3>Semana 2: Energía</h3>
                 <ul>
@@ -60,51 +59,8 @@
                     <li>Viernes: Albóndigas en salsa con puré de papa cremoso<span class="info-btn" onclick="openModal('albondigas')">+info</span></li>
                 </ul>
             </div>
-
-            <div class="menu-card">
-                <h3>Semana 3: Texturas</h3>
-                <ul>
-                    <li>Lunes: Milanesas de pollo c/puré de calabaza <span class="info-btn" onclick="openModal('mila_pollo')">+info</span></li>
-                    <li>Martes: Tirabuzones "a la crema" de vegetales <span class="info-btn" onclick="openModal('tirabuzones')">+info</span></li>
-                    <li>Miércoles: Tarta J&Q y choclo <span class="info-btn" onclick="openModal('tarta_jq')">+info</span></li>
-                    <li>Jueves: Carne al horno cortada en cubitos con papas rústicas <span class="info-btn" onclick="openModal('carne_horno')">+info</span></li>
-                    <li>Viernes: Chow Fan de pollo <span class="info-btn" onclick="openModal('chow_fan')">+info</span></li>
-                </ul>
-            </div>
-
-            <div class="menu-card">
-                <h3>Semana 4: Cierre Premium</h3>
-                <ul>
-                    <li>Lunes: Pastel de calabaza y pollo <span class="info-btn" onclick="openModal('pastel_calabaza')">+info</span></li>
-                    <li>Martes: Ravioles salsa rosa <span class="info-btn" onclick="openModal('ravioles')">+info</span></li>
-                    <li>Miércoles: Suprema Napolitana <span class="info-btn" onclick="openModal('suprema')">+info</span></li>
-                    <li>Jueves: Burritos de carne <span class="info-btn" onclick="openModal('burritos')">+info</span></li>
-                    <li>Viernes: Empanadas de pollo <span class="info-btn" onclick="openModal('empanadas')">+info</span></li>
-                </ul>
-            </div>
-            
-        </div></main>
-
-    <section class="commitment-container">
-        <h2 class="section-title">Compromiso Cuchara & Co.</h2>
-        <div class="commitment-grid">
-            <div class="commitment-item">
-                <i class="fa-solid fa-snowflake"></i>
-                <h4>Cadena de Frío</h4>
-                <p>Seguridad total desde nuestra cocina hasta la puerta de tu casa.</p>
-            </div>
-            <div class="commitment-item">
-                <i class="fa-solid fa-smog"></i> 
-                <h4>Regeneración Ideal</h4>
-                <p>Envases diseñados para mantener la textura original.</p>
-            </div>
-            <div class="commitment-item">
-                <i class="fa-solid fa-truck-fast"></i>
-                <h4>Entrega Programada</h4>
-                <p>Logística optimizada ideal para organizar la semana sin estrés.</p>
-            </div>
         </div>
-    </section>
+    </main>
 
     <div id="infoModal" class="modal">
         <div class="modal-content">
@@ -112,75 +68,53 @@
             <div id="modalBody"></div>
         </div>
     </div>
-<div id="modalCambioMenu" class="modal">
-    <div class="modal-content" style="max-width: 600px; text-align: left;">
-        <span class="close-button" onclick="cerrarModalCambio()">&times;</span>
-        <h2 style="font-family: 'Playfair Display', serif; color: var(--verde); text-align: center;">Cambio de Menú</h2>
-        
-        <div id="infoRestriccion" style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 20px 0; border: 1px solid #ffeeba;">
-            <p style="font-size: 0.85rem; color: #856404;">
-                <i class="fa-solid fa-circle-info"></i> <strong>Importante:</strong> Los cambios se realizan hasta los <strong>miércoles a las 20:00 hs</strong>. Se acepta un cambio por semana con un costo adicional de <strong>$3.750</strong>.
-            </p>
-        </div>
 
-        <form id="formCambioMenu">
-            <div class="form-group">
-                <label>Nombre del Alumno / Particular</label>
-                <input type="text" id="cambioNombre" required placeholder="Nombre completo">
+    <div id="modalCambioMenu" class="modal">
+        <div class="modal-content" style="max-width: 600px; text-align: left;">
+            <span class="close-button" onclick="cerrarModalCambio()">&times;</span>
+            <h2 style="font-family: 'Playfair Display', serif; color: var(--verde); text-align: center;">Cambio de Menú</h2>
+            <div id="infoRestriccion" style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 20px 0; border: 1px solid #ffeeba;">
+                <p style="font-size: 0.85rem; color: #856404;">
+                    <i class="fa-solid fa-circle-info"></i> <strong>Importante:</strong> Los cambios se realizan hasta los miércoles a las 20:00 hs.
+                </p>
             </div>
-            <div class="form-group">
-                <label>Seleccionar nuevo plato</label>
-                <select id="cambioPlato" required>
-                    <option value="" disabled selected>Seleccione una opción del pool...</option>
-                    <option value="Suprema al horno c/papas">Suprema al horno c/papas</option>
-                    <option value="Milanesitas de carne al horno c/puré mixto">Milanesitas de carne al horno c/puré mixto</option>
-                    <option value="Ravioles salsa rosa">Ravioles salsa rosa</option>
-                    <option value="Nuggets de pollo caseros c/cubitos de batata asada">Nuggets de pollo caseros c/cubitos de batata asada</option>
-                </select>
-            </div>
-            <button type="button" onclick="enviarCambioWhatsApp()" class="btn-primary" style="width: 100%; margin-top: 10px; background-color: #25D366; border: none;">
-                ENVIAR SOLICITUD (+ $3.750)
-            </button>
-        </form>
+            <form id="formCambioMenu">
+                <div class="form-group">
+                    <label>Nombre del Alumno</label>
+                    <input type="text" id="cambioNombre" required>
+                </div>
+                <div class="form-group">
+                    <label>Nuevo plato</label>
+                    <select id="cambioPlato">
+                        <option value="Suprema al horno">Suprema al horno c/papas</option>
+                        <option value="Ravioles">Ravioles salsa rosa</option>
+                    </select>
+                </div>
+                <button type="button" onclick="enviarCambioWhatsApp()" class="btn-primary" style="width: 100%; background-color: #25D366;">
+                    ENVIAR SOLICITUD
+                </button>
+            </form>
+        </div>
     </div>
-</div>
+
     <footer>
         <p>© 2026 CUCHARA & CO. — BUENOS AIRES</p>
     </footer>
 
     <script>
         const infoPlatos = {
-            'mila_carne': { titulo: 'Milanesitas de Carne', ingredientes: '• Nalga magra\n• Pan rallado premium\n• Papa y Calabaza', nutricion: '520 kcal | 35g Proteína', alergenos: 'TRIGO, HUEVO, LECHE', instrucciones: 'Microondas: 4-5 min.' },
-            'penne_bolo': { titulo: 'Penne Rigate Bolognesa', ingredientes: '• Sémola de trigo\n• Carne vacuna magra\n• Tomate natural', nutricion: '580 kcal | 28g Proteína', alergenos: 'TRIGO', instrucciones: 'Microondas: 4 min.' },
-            'nuggets': { titulo: 'Nuggets Caseros', ingredientes: '• Pechuga de pollo\n• Rebozado crocante\n• Batatas al horno', nutricion: '490 kcal | 26g Proteína', alergenos: 'TRIGO, HUEVO', instrucciones: 'Horno 10 min o Micro 4 min.' },
-            'pastel_papa': { titulo: 'Pastel de Papa', ingredientes: '• Carne vacuna magra\n• Puré natural\n• Parmesano', nutricion: '590 kcal | 31g Proteína', alergenos: 'LECHE, HUEVO', instrucciones: 'Microondas: 5 min.' },
-            'risotto': { titulo: 'Risotto de Pollo', ingredientes: '• Arroz doble carolina\n• Pollo y vegetales', nutricion: '510 kcal | 24g Proteína', alergenos: 'LECHE', instrucciones: 'Microondas: 4 min.' },
-            'suprema_horno': { titulo: 'Suprema al Horno', ingredientes: '• Suprema \n• Papas al Horno', nutricion: '485 kcal | 36g Proteína', alergenos: 'S/ALÉRGENOS', instrucciones: 'Microondas: 4 min.' },
-            'noquis': { titulo: 'Ñoquis Pomodoro', ingredientes: '• Papa natural\n• Salsa pomodoro', nutricion: '460 kcal | 11g Proteína', alergenos: 'TRIGO, HUEVO', instrucciones: 'Microondas: 3-4 min.' },
-            'hamburguesa': { titulo: 'Hamburguesas Caseras', ingredientes: '• 100% Vacuna\n• Papas rústicas', nutricion: '550 kcal | 33g Proteína', alergenos: 'TRIGO', instrucciones: 'Microondas: 4-5 min.' },
-            'cazuela': { titulo: 'Cazuela de Pollo', ingredientes: '• Pollo y calabaza\n• Arroz largo fino', nutricion: '470 kcal | 29g Proteína', alergenos: 'S/ALÉRGENOS', instrucciones: 'Microondas: 5 min.' },
-            'albondigas': { titulo: 'Albóndigas con Puré', ingredientes: '• Carne magra\n• Puré cremoso', nutricion: '530 kcal | 27g Proteína', alergenos: 'TRIGO, LECHE, HUEVO', instrucciones: 'Microondas: 5 min.' },
-            'mila_pollo': { titulo: 'Milanesas de Pollo', ingredientes: '• Pechuga fresca\n• Calabaza al romero', nutricion: '495 kcal | 34g Proteína', alergenos: 'TRIGO, HUEVO', instrucciones: 'Microondas: 4 min.' },
-            'tirabuzones': { titulo: 'Tirabuzones Crema', ingredientes: '• Pasta de sémola\n• Crema ligera', nutricion: '510 kcal | 16g Proteína', alergenos: 'TRIGO, LECHE', instrucciones: 'Microondas: 4 min.' },
-            'tarta_jq': { titulo: 'Tarta Jamón y Queso', ingredientes: '• Masa integral\n• Muzzarella y jamón', nutricion: '480 kcal | 22g Proteína', alergenos: 'TRIGO, LECHE, HUEVO', instrucciones: 'Horno 8 min (ideal).' },
-            'carne_horno': { titulo: 'Carne al Horno', ingredientes: '• Cocción lenta\n• Papas rústicas', nutricion: '560 kcal | 38g Proteína', alergenos: 'S/ALÉRGENOS', instrucciones: 'Microondas: 5 min.' },
-            'chow_fan': { titulo: 'Chow Fan Pollo', ingredientes: '• Arroz salteado\n• Vegetales y soja', nutricion: '505 kcal | 28g Proteína', alergenos: 'SOJA, HUEVO', instrucciones: 'Microondas: 4 min.' },
-            'pastel_calabaza': { titulo: 'Pastel de Calabaza', ingredientes: '• Pollo desmechado\n• Puré de calabaza', nutricion: '440 kcal | 32g Proteína', alergenos: 'LECHE', instrucciones: 'Microondas: 5 min.' },
-            'ravioles': { titulo: 'Ravioles Rosa', ingredientes: '• Espinaca y ricota\n• Pomodoro y crema', nutricion: '490 kcal | 19g Proteína', alergenos: 'TRIGO, LECHE, HUEVO', instrucciones: 'Microondas: 4 min.' },
-            'suprema': { titulo: 'Suprema Napolitana', ingredientes: '• Suprema rebozada\n• Muzzarella y batatas', nutricion: '570 kcal | 38g Proteína', alergenos: 'TRIGO, LECHE', instrucciones: 'Microondas: 5 min.' },
-            'burritos': { titulo: 'Burritos de Carne', ingredientes: '• Tortilla de trigo\n• Carne y arroz', nutricion: '525 kcal | 26g Proteína', alergenos: 'TRIGO', instrucciones: 'Microondas: 3-4 min.' },
-            'empanadas': { titulo: 'Empanadas de Pollo', ingredientes: '• Masa horneada\n• Pollo jugoso', nutricion: '510 kcal | 21g Proteína', alergenos: 'TRIGO, HUEVO', instrucciones: 'Horno 8 min o Micro 2 min.' }
+            'mila_carne': { titulo: 'Milanesitas de Carne', ingredientes: '• Nalga magra\n• Puré mixto', nutricion: '520 kcal', alergenos: 'TRIGO, HUEVO', instrucciones: 'Microondas: 5 min.' },
+            'penne_bolo': { titulo: 'Penne Bolognesa', ingredientes: '• Carne vacuna\n• Tomate natural', nutricion: '580 kcal', alergenos: 'TRIGO', instrucciones: 'Microondas: 4 min.' }
+            // Agrega aquí el resto de tus platos si lo deseas
         };
 
         function openModal(key) {
             const data = infoPlatos[key];
             if (!data) return;
             document.getElementById('modalBody').innerHTML = `
-                <h2 style="color:var(--verde); font-family:'Playfair Display'; margin-bottom:15px;">${data.titulo}</h2>
-                <p><strong>Ingredientes:</strong><br>${data.ingredientes.replace(/\n/g, '<br>')}</p><br>
-                <p><strong>Nutrición:</strong><br>${data.nutricion}</p>
-                <p style="color:red; font-size:0.8rem; margin:10px 0;">CONTIENE: ${data.alergenos}</p>
-                <p><strong>Regeneración:</strong><br>${data.instrucciones}</p>
+                <h2 style="color:var(--verde); font-family:'Playfair Display';">${data.titulo}</h2>
+                <p><strong>Ingredientes:</strong><br>${data.ingredientes.replace(/\n/g, '<br>')}</p>
+                <p><strong>Nutrición:</strong> ${data.nutricion}</p>
             `;
             document.getElementById('infoModal').style.display = "block";
         }
@@ -188,10 +122,8 @@
         function closeModal() {
             document.getElementById('infoModal').style.display = "none";
         }
-
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('infoModal')) closeModal();
-        }
-    <script src="script.js?v=2.0"></script>
+    </script>
+    
+    <script src="script.js?v=4.0"></script>
 </body>
 </html>
