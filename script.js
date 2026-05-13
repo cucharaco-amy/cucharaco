@@ -1,47 +1,14 @@
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx1AqF13kEZrUyiqZ-Dgrmthn7t3xqz7ogv1deQsnPUtHWwQp9XxINjsIPlp_LhdQgA/exec";
-// --- FUNCIONES DE CAMBIO DE MENÚ ---
-function abrirModalCambio(e) {
-    if (e) e.preventDefault();
-    console.log("Intentando abrir modal..."); // Esto saldrá en la consola para probar
-    
-    const modal = document.getElementById('modalCambioMenu');
-    if (modal) {
-        modal.style.display = 'block';
-    } else {
-        console.error("No se encontró el elemento con ID 'modalCambioMenu'");
-    }
-}
 
-function cerrarModalCambio() {
-    const modal = document.getElementById('modalCambioMenu');
-    if (modal) {
-        modal.style.display = 'none';
-    }
-}
-
-function enviarCambioWhatsApp() {
-    const nombre = document.getElementById('cambioNombre').value;
-    const plato = document.getElementById('cambioPlato').value;
-
-    if (!nombre || !plato) {
-        alert("Por favor, completa todos los campos.");
-        return;
-    }
-
-    const mensaje = `*Solicitud de Cambio de Menú - Cuchara %26 Co*%0A` +
-                    `*Cliente:* ${nombre}%0A` +
-                    `*Nuevo Plato:* ${plato}%0A` +
-                    `*Adicional:* $3.750`;
-
-    window.open(`https://wa.me/5491131445518?text=${mensaje}`, '_blank');
-    cerrarModalCambio();
-}
+// --- 1. LÓGICA DE VERIFICACIÓN DE CUPO (HOME / INSCRIPCIÓN) ---
 async function verificarCupo() {
+    const popup = document.getElementById('popupCupo');
+    if (!popup) return; // Solo ejecutar si existe el elemento en el HTML
+
     try {
         const response = await fetch(SCRIPT_URL);
         const data = await response.json();
         
-        const popup = document.getElementById('popupCupo');
         const titulo = document.getElementById('popupTitulo');
         const mensaje = document.getElementById('popupMensaje');
         const accion = document.getElementById('popupAccion');
@@ -58,7 +25,6 @@ async function verificarCupo() {
             mensaje.innerText = "Gracias por el interés. Por el momento hemos cubierto el cupo de la prueba piloto. Suscríbete para enterarte de la próxima apertura.";
             accion.innerHTML = `<button onclick="cerrarPopup()" class="btn-primary">ENTENDIDO</button>`;
             
-            // Deshabilitar el acceso a inscripción
             if (linkInscripcion) {
                 linkInscripcion.style.opacity = "0.5";
                 linkInscripcion.style.pointerEvents = "none";
@@ -71,78 +37,76 @@ async function verificarCupo() {
 }
 
 function cerrarPopup() {
-    document.getElementById('popupCupo').style.display = 'none';
+    const popup = document.getElementById('popupCupo');
+    if (popup) popup.style.display = 'none';
 }
-/* --- LÓGICA DE CAMBIO DE MENÚ (CUCHARA & CO) --- */
 
-/**
- * Abre el modal de cambio de menú verificando que sea antes del miércoles 20:00 hs.
- * Se asume que el cambio es para la semana siguiente o corriente según el corte.
- */
+// --- 2. LÓGICA DE CAMBIO DE MENÚ (PÁGINA MENÚ) ---
+
 function abrirModalCambio(e) {
     if (e) e.preventDefault();
     
     const ahora = new Date();
-    const diaSemana = ahora.getDay(); // 0: Domingo, 1: Lunes, 2: Martes, 3: Miércoles...
+    const diaSemana = ahora.getDay(); // 0: Dom, 1: Lun, 2: Mar, 3: Mié, 4: Jue, 5: Vie, 6: Sáb
     const hora = ahora.getHours();
 
-    // Lógica de cierre: Miércoles (3) a las 20:00 hs.
-    // Bloquea si: Es miércoles después de las 20, o es Jueves(4), Viernes(5), Sábado(6) o Domingo(0).
+    // Restricción: Miércoles (3) a las 20:00 hs
     const esPasadoMiercoles = (diaSemana === 3 && hora >= 20) || (diaSemana > 3) || (diaSemana === 0);
 
     if (esPasadoMiercoles) {
-        alert("El sistema de cambios de menú está cerrado. Los cambios se aceptan únicamente hasta los miércoles a las 20:00 hs sin excepción.");
+        alert("El plazo para realizar cambios de menú ha cerrado (Miércoles 20:00 hs). Se habilitará nuevamente la próxima semana.");
         return;
     }
 
     const modal = document.getElementById('modalCambioMenu');
     if (modal) {
         modal.style.display = 'block';
+    } else {
+        console.error("No se encontró el modal 'modalCambioMenu'");
     }
 }
 
-/**
- * Cierra el modal de cambio de menú
- */
 function cerrarModalCambio() {
     const modal = document.getElementById('modalCambioMenu');
-    if (modal) {
-        modal.style.display = 'none';
-    }
+    if (modal) modal.style.display = 'none';
 }
 
-/**
- * Recopila los datos y envía la solicitud por WhatsApp
- */
 function enviarCambioWhatsApp() {
     const nombre = document.getElementById('cambioNombre').value.trim();
     const plato = document.getElementById('cambioPlato').value;
 
     if (!nombre || !plato) {
-        alert("Por favor, completa el nombre y selecciona un plato.");
+        alert("Por favor, completa tu nombre y selecciona un plato.");
         return;
     }
 
-    // Formateo del mensaje para WhatsApp
     const mensaje = `*Solicitud de Cambio de Menú - Cuchara %26 Co*%0A` +
-                    `*Alumno/Particular:* ${nombre}%0A` +
-                    `*Nuevo Plato elegido:* ${plato}%0A` +
-                    `*Costo adicional:* $3.750%0A%0A` +
-                    `_Solicitud enviada dentro del plazo establecido (Miércoles 20:00 hs)._`;
+                    `*Cliente:* ${nombre}%0A` +
+                    `*Nuevo Plato:* ${plato}%0A` +
+                    `*Costo Adicional:* $3.750%0A%0A` +
+                    `_Solicitud enviada según términos de frescura (Cierre Miércoles 20hs)._`;
 
-    // Número de contacto de Cuchara & Co
     const telefono = "5491131445518";
     window.open(`https://wa.me/${telefono}?text=${mensaje}`, '_blank');
-    
     cerrarModalCambio();
 }
 
-// Cerrar modal si el usuario hace clic fuera de la caja blanca
+// --- 3. INICIALIZACIÓN Y EVENTOS GLOBALES ---
+
+window.onload = function() {
+    // Solo verificar cupo si estamos en una página que lo requiera
+    verificarCupo();
+};
+
+// Cerrar modales al hacer clic fuera de la caja blanca
 window.addEventListener('click', function(event) {
-    const modal = document.getElementById('modalCambioMenu');
-    if (event.target == modal) {
+    const modalCambio = document.getElementById('modalCambioMenu');
+    const modalCupo = document.getElementById('popupCupo');
+    
+    if (event.target === modalCambio) {
         cerrarModalCambio();
     }
+    if (event.target === modalCupo) {
+        cerrarPopup();
+    }
 });
-// Ejecutar al cargar la página
-window.onload = verificarCupo;
