@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú | Cuchara & Co.</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=1.1">
+    <link rel="stylesheet" href="style.css?v=1.2">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -49,14 +49,37 @@
                     <li>Viernes: Risotto de pollo y vegetales <span class="info-btn" onclick="openModal('risotto')">+info</span></li>
                 </ul>
             </div>
+
             <div class="menu-card">
                 <h3>Semana 2: Energía</h3>
                 <ul>
                     <li>Lunes: Suprema al horno c/papas <span class="info-btn" onclick="openModal('suprema_horno')">+info</span></li>
                     <li>Martes: Ñoquis pomodoro <span class="info-btn" onclick="openModal('noquis')">+info</span></li>
-                    <li>Miércoles: Hamburguesas c/cuñas de papa al horno<span class="info-btn" onclick="openModal('hamburguesa')">+info</span></li>
+                    <li>Miércoles: Hamburguesas c/cuñas de papa al horno <span class="info-btn" onclick="openModal('hamburguesa')">+info</span></li>
                     <li>Jueves: Cazuela de pollo c/trocitos de calabaza y arroz <span class="info-btn" onclick="openModal('cazuela')">+info</span></li>
-                    <li>Viernes: Albóndigas en salsa con puré de papa cremoso<span class="info-btn" onclick="openModal('albondigas')">+info</span></li>
+                    <li>Viernes: Albóndigas en salsa con puré de papa cremoso <span class="info-btn" onclick="openModal('albondigas')">+info</span></li>
+                </ul>
+            </div>
+
+            <div class="menu-card">
+                <h3>Semana 3: Texturas</h3>
+                <ul>
+                    <li>Lunes: Milanesas de pollo c/puré de calabaza <span class="info-btn" onclick="openModal('mila_pollo')">+info</span></li>
+                    <li>Martes: Tirabuzones "a la crema" de vegetales <span class="info-btn" onclick="openModal('tirabuzones')">+info</span></li>
+                    <li>Miércoles: Tarta J&Q y choclo <span class="info-btn" onclick="openModal('tarta_jq')">+info</span></li>
+                    <li>Jueves: Carne al horno con papas rústicas <span class="info-btn" onclick="openModal('carne_horno')">+info</span></li>
+                    <li>Viernes: Chow Fan de pollo <span class="info-btn" onclick="openModal('chow_fan')">+info</span></li>
+                </ul>
+            </div>
+
+            <div class="menu-card">
+                <h3>Semana 4: Cierre Premium</h3>
+                <ul>
+                    <li>Lunes: Pastel de calabaza y pollo <span class="info-btn" onclick="openModal('pastel_calabaza')">+info</span></li>
+                    <li>Martes: Ravioles salsa rosa <span class="info-btn" onclick="openModal('ravioles')">+info</span></li>
+                    <li>Miércoles: Suprema Napolitana <span class="info-btn" onclick="openModal('suprema')">+info</span></li>
+                    <li>Jueves: Burritos de carne <span class="info-btn" onclick="openModal('burritos')">+info</span></li>
+                    <li>Viernes: Empanadas de pollo <span class="info-btn" onclick="openModal('empanadas')">+info</span></li>
                 </ul>
             </div>
         </div>
@@ -71,59 +94,4 @@
 
     <div id="modalCambioMenu" class="modal">
         <div class="modal-content" style="max-width: 600px; text-align: left;">
-            <span class="close-button" onclick="cerrarModalCambio()">&times;</span>
-            <h2 style="font-family: 'Playfair Display', serif; color: var(--verde); text-align: center;">Cambio de Menú</h2>
-            <div id="infoRestriccion" style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 20px 0; border: 1px solid #ffeeba;">
-                <p style="font-size: 0.85rem; color: #856404;">
-                    <i class="fa-solid fa-circle-info"></i> <strong>Importante:</strong> Los cambios se realizan hasta los miércoles a las 20:00 hs.
-                </p>
-            </div>
-            <form id="formCambioMenu">
-                <div class="form-group">
-                    <label>Nombre del Alumno</label>
-                    <input type="text" id="cambioNombre" required>
-                </div>
-                <div class="form-group">
-                    <label>Nuevo plato</label>
-                    <select id="cambioPlato">
-                        <option value="Suprema al horno">Suprema al horno c/papas</option>
-                        <option value="Ravioles">Ravioles salsa rosa</option>
-                    </select>
-                </div>
-                <button type="button" onclick="enviarCambioWhatsApp()" class="btn-primary" style="width: 100%; background-color: #25D366;">
-                    ENVIAR SOLICITUD
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <footer>
-        <p>© 2026 CUCHARA & CO. — BUENOS AIRES</p>
-    </footer>
-
-    <script>
-        const infoPlatos = {
-            'mila_carne': { titulo: 'Milanesitas de Carne', ingredientes: '• Nalga magra\n• Puré mixto', nutricion: '520 kcal', alergenos: 'TRIGO, HUEVO', instrucciones: 'Microondas: 5 min.' },
-            'penne_bolo': { titulo: 'Penne Bolognesa', ingredientes: '• Carne vacuna\n• Tomate natural', nutricion: '580 kcal', alergenos: 'TRIGO', instrucciones: 'Microondas: 4 min.' }
-            // Agrega aquí el resto de tus platos si lo deseas
-        };
-
-        function openModal(key) {
-            const data = infoPlatos[key];
-            if (!data) return;
-            document.getElementById('modalBody').innerHTML = `
-                <h2 style="color:var(--verde); font-family:'Playfair Display';">${data.titulo}</h2>
-                <p><strong>Ingredientes:</strong><br>${data.ingredientes.replace(/\n/g, '<br>')}</p>
-                <p><strong>Nutrición:</strong> ${data.nutricion}</p>
-            `;
-            document.getElementById('infoModal').style.display = "block";
-        }
-
-        function closeModal() {
-            document.getElementById('infoModal').style.display = "none";
-        }
-    </script>
-    
-    <script src="script.js?v=4.0"></script>
-</body>
-</html>
+            <span class="close-button" onclick="cerr
