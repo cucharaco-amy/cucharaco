@@ -324,7 +324,27 @@ footer {
     color: var(--trigo);
     margin-bottom: 20px;
 }
+#formCambioMenu .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
 
+#formCambioMenu label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.7rem;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    color: var(--verde);
+}
+
+#formCambioMenu input, #formCambioMenu select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+}
 /* --- ESTILOS DE LA SECCIÓN DE CARRITO (NUEVO) --- */
 #seccionCarrito .btn-primary:hover {
     background-color: #128C7E !important;
