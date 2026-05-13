@@ -1,5 +1,41 @@
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx1AqF13kEZrUyiqZ-Dgrmthn7t3xqz7ogv1deQsnPUtHWwQp9XxINjsIPlp_LhdQgA/exec";
+// --- FUNCIONES DE CAMBIO DE MENÚ ---
+function abrirModalCambio(e) {
+    if (e) e.preventDefault();
+    console.log("Intentando abrir modal..."); // Esto saldrá en la consola para probar
+    
+    const modal = document.getElementById('modalCambioMenu');
+    if (modal) {
+        modal.style.display = 'block';
+    } else {
+        console.error("No se encontró el elemento con ID 'modalCambioMenu'");
+    }
+}
 
+function cerrarModalCambio() {
+    const modal = document.getElementById('modalCambioMenu');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+function enviarCambioWhatsApp() {
+    const nombre = document.getElementById('cambioNombre').value;
+    const plato = document.getElementById('cambioPlato').value;
+
+    if (!nombre || !plato) {
+        alert("Por favor, completa todos los campos.");
+        return;
+    }
+
+    const mensaje = `*Solicitud de Cambio de Menú - Cuchara %26 Co*%0A` +
+                    `*Cliente:* ${nombre}%0A` +
+                    `*Nuevo Plato:* ${plato}%0A` +
+                    `*Adicional:* $3.750`;
+
+    window.open(`https://wa.me/5491131445518?text=${mensaje}`, '_blank');
+    cerrarModalCambio();
+}
 async function verificarCupo() {
     try {
         const response = await fetch(SCRIPT_URL);
