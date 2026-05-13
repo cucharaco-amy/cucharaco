@@ -32,6 +32,11 @@
     <main class="container">
         <h1 class="section-title">Calendario Mensual</h1>
         
+        <div style="text-align: center; margin-bottom: 40px;">
+    <a href="#" class="btn-primary" onclick="abrirModalCambio(event)" style="background-color: var(--trigo);">
+        <i class="fa-solid fa-utensils"></i> SOLICITAR CAMBIO DE MENÚ
+    </a>
+</div>
         <div class="menu-grid">
             
             <div class="menu-card">
@@ -107,7 +112,38 @@
             <div id="modalBody"></div>
         </div>
     </div>
+<div id="modalCambioMenu" class="modal">
+    <div class="modal-content" style="max-width: 600px; text-align: left;">
+        <span class="close-button" onclick="cerrarModalCambio()">&times;</span>
+        <h2 style="font-family: 'Playfair Display', serif; color: var(--verde); text-align: center;">Cambio de Menú</h2>
+        
+        <div id="infoRestriccion" style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 20px 0; border: 1px solid #ffeeba;">
+            <p style="font-size: 0.85rem; color: #856404;">
+                <i class="fa-solid fa-circle-info"></i> <strong>Importante:</strong> Los cambios se realizan hasta los <strong>miércoles a las 20:00 hs</strong>. Se acepta un cambio por semana con un costo adicional de <strong>$3.750</strong>.
+            </p>
+        </div>
 
+        <form id="formCambioMenu">
+            <div class="form-group">
+                <label>Nombre del Alumno / Particular</label>
+                <input type="text" id="cambioNombre" required placeholder="Nombre completo">
+            </div>
+            <div class="form-group">
+                <label>Seleccionar nuevo plato</label>
+                <select id="cambioPlato" required>
+                    <option value="" disabled selected>Seleccione una opción del pool...</option>
+                    <option value="Suprema al horno c/papas">Suprema al horno c/papas</option>
+                    <option value="Milanesitas de carne al horno c/puré mixto">Milanesitas de carne al horno c/puré mixto</option>
+                    <option value="Ravioles salsa rosa">Ravioles salsa rosa</option>
+                    <option value="Nuggets de pollo caseros c/cubitos de batata asada">Nuggets de pollo caseros c/cubitos de batata asada</option>
+                </select>
+            </div>
+            <button type="button" onclick="enviarCambioWhatsApp()" class="btn-primary" style="width: 100%; margin-top: 10px; background-color: #25D366; border: none;">
+                ENVIAR SOLICITUD (+ $3.750)
+            </button>
+        </form>
+    </div>
+</div>
     <footer>
         <p>© 2026 CUCHARA & CO. — BUENOS AIRES</p>
     </footer>
