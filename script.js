@@ -1,9 +1,9 @@
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx1AqF13kEZrUyiqZ-Dgrmthn7t3xqz7ogv1deQsnPUtHWwQp9XxINjsIPlp_LhdQgA/exec";
 
-// --- 1. LÓGICA DE VERIFICACIÓN DE CUPO (HOME / INSCRIPCIÓN) ---
+// --- 1. LÓGICA DE VERIFICACIÓN DE CUPO (PÁGINA INICIO / INSCRIPCIÓN) ---
 async function verificarCupo() {
     const popup = document.getElementById('popupCupo');
-    if (!popup) return; // Solo ejecutar si existe el elemento en el HTML
+    if (!popup) return; // Si no estamos en el index, no hace nada
 
     try {
         const response = await fetch(SCRIPT_URL);
@@ -50,11 +50,11 @@ function abrirModalCambio(e) {
     const diaSemana = ahora.getDay(); // 0: Dom, 1: Lun, 2: Mar, 3: Mié, 4: Jue, 5: Vie, 6: Sáb
     const hora = ahora.getHours();
 
-    // Restricción: Miércoles (3) a las 20:00 hs
+    // RESTRICCIÓN: Miércoles (3) a las 20:00 hs
     const esPasadoMiercoles = (diaSemana === 3 && hora >= 20) || (diaSemana > 3) || (diaSemana === 0);
 
     if (esPasadoMiercoles) {
-        alert("El plazo para realizar cambios de menú ha cerrado (Miércoles 20:00 hs). Se habilitará nuevamente la próxima semana.");
+        alert("El plazo para realizar cambios de menú ha cerrado (Miércoles 20:00 hs). Se habilitará nuevamente la próxima semana para garantizar la frescura de los ingredientes.");
         return;
     }
 
@@ -62,7 +62,7 @@ function abrirModalCambio(e) {
     if (modal) {
         modal.style.display = 'block';
     } else {
-        console.error("No se encontró el modal 'modalCambioMenu'");
+        console.error("Error: No se encontró el modal con ID 'modalCambioMenu' en el HTML.");
     }
 }
 
@@ -84,29 +84,24 @@ function enviarCambioWhatsApp() {
                     `*Cliente:* ${nombre}%0A` +
                     `*Nuevo Plato:* ${plato}%0A` +
                     `*Costo Adicional:* $3.750%0A%0A` +
-                    `_Solicitud enviada según términos de frescura (Cierre Miércoles 20hs)._`;
+                    `_Enviado según términos de frescura (Cierre Miércoles 20hs)._`;
 
     const telefono = "5491131445518";
     window.open(`https://wa.me/${telefono}?text=${mensaje}`, '_blank');
     cerrarModalCambio();
 }
 
-// --- 3. INICIALIZACIÓN Y EVENTOS GLOBALES ---
+// --- 3. INICIALIZACIÓN Y EVENTOS ---
 
 window.onload = function() {
-    // Solo verificar cupo si estamos en una página que lo requiera
     verificarCupo();
 };
 
-// Cerrar modales al hacer clic fuera de la caja blanca
+// Cerrar modales al hacer clic fuera
 window.addEventListener('click', function(event) {
     const modalCambio = document.getElementById('modalCambioMenu');
     const modalCupo = document.getElementById('popupCupo');
     
-    if (event.target === modalCambio) {
-        cerrarModalCambio();
-    }
-    if (event.target === modalCupo) {
-        cerrarPopup();
-    }
+    if (event.target === modalCambio) cerrarModalCambio();
+    if (event.target === modalCupo) cerrarPopup();
 });
