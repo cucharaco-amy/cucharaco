@@ -94,4 +94,87 @@
 
     <div id="modalCambioMenu" class="modal">
         <div class="modal-content" style="max-width: 600px; text-align: left;">
-            <span class="close-button" onclick="cerr
+            <span class="close-button" onclick="cerrarModalCambio()">&times;</span>
+            <h2 style="font-family: 'Playfair Display', serif; color: var(--verde); text-align: center;">Cambio de Menú</h2>
+            
+            <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 20px 0; border: 1px solid #ffeeba;">
+                <p style="font-size: 0.85rem; color: #856404;">
+                    <i class="fa-solid fa-circle-info"></i> <strong>Importante:</strong> Los cambios se realizan hasta los <strong>miércoles a las 20:00 hs</strong>. Costo adicional: <strong>$3.750</strong>.
+                </p>
+            </div>
+
+            <form id="formCambioMenu">
+                <div class="form-group">
+                    <label>Nombre del Alumno / Particular</label>
+                    <input type="text" id="cambioNombre" required placeholder="Nombre completo">
+                </div>
+                <div class="form-group">
+                    <label>Seleccionar nuevo plato</label>
+                    <select id="cambioPlato" required>
+                        <option value="" disabled selected>Seleccione una opción...</option>
+                        <option value="Suprema al horno c/papas">Suprema al horno c/papas</option>
+                        <option value="Milanesitas de carne al horno c/puré mixto">Milanesitas de carne al horno c/puré mixto</option>
+                        <option value="Ravioles salsa rosa">Ravioles salsa rosa</option>
+                        <option value="Nuggets de pollo caseros c/cubitos de batata asada">Nuggets de pollo caseros c/cubitos de batata asada</option>
+                    </select>
+                </div>
+                <button type="button" onclick="enviarCambioWhatsApp()" class="btn-primary" style="width: 100%; margin-top: 10px; background-color: #25D366; border: none;">
+                    ENVIAR SOLICITUD (+ $3.750)
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 CUCHARA & CO. — BUENOS AIRES</p>
+    </footer>
+
+    <script>
+        const infoPlatos = {
+            'mila_carne': { titulo: 'Milanesitas de Carne', ingredientes: '• Nalga magra\n• Puré mixto', nutricion: '520 kcal', alergenos: 'TRIGO, HUEVO', instrucciones: 'Microondas: 5 min.' },
+            'penne_bolo': { titulo: 'Penne Rigate Bolognesa', ingredientes: '• Carne vacuna\n• Tomate natural', nutricion: '580 kcal', alergenos: 'TRIGO', instrucciones: 'Microondas: 4 min.' },
+            'nuggets': { titulo: 'Nuggets Caseros', ingredientes: '• Pechuga de pollo\n• Batatas asadas', nutricion: '490 kcal', alergenos: 'TRIGO, HUEVO', instrucciones: 'Horno 10 min.' },
+            'pastel_papa': { titulo: 'Pastel de Papa', ingredientes: '• Carne magra\n• Puré natural', nutricion: '590 kcal', alergenos: 'LECHE, HUEVO', instrucciones: 'Microondas: 5 min.' },
+            'risotto': { titulo: 'Risotto de Pollo', ingredientes: '• Arroz\n• Vegetales frescos', nutricion: '510 kcal', alergenos: 'LECHE', instrucciones: 'Microondas: 4 min.' },
+            'suprema_horno': { titulo: 'Suprema al Horno', ingredientes: '• Pechuga\n• Papas naturales', nutricion: '485 kcal', alergenos: 'S/ALÉRGENOS', instrucciones: 'Microondas: 4 min.' },
+            'noquis': { titulo: 'Ñoquis Pomodoro', ingredientes: '• Papa natural\n• Salsa casera', nutricion: '460 kcal', alergenos: 'TRIGO, HUEVO', instrucciones: 'Microondas: 3 min.' },
+            'hamburguesa': { titulo: 'Hamburguesas Caseras', ingredientes: '• 100% Vacuna\n• Cuñas de papa', nutricion: '550 kcal', alergenos: 'TRIGO', instrucciones: 'Microondas: 4 min.' },
+            'cazuela': { titulo: 'Cazuela de Pollo', ingredientes: '• Pollo y calabaza\n• Arroz', nutricion: '470 kcal', alergenos: 'S/ALÉRGENOS', instrucciones: 'Microondas: 5 min.' },
+            'albondigas': { titulo: 'Albóndigas con Puré', ingredientes: '• Carne magra\n• Puré cremoso', nutricion: '530 kcal', alergenos: 'TRIGO, LECHE', instrucciones: 'Microondas: 5 min.' },
+            'mila_pollo': { titulo: 'Milanesas de Pollo', ingredientes: '• Pechuga fresca\n• Calabaza asada', nutricion: '495 kcal', alergenos: 'TRIGO, HUEVO', instrucciones: 'Microondas: 4 min.' },
+            'tirabuzones': { titulo: 'Tirabuzones Crema', ingredientes: '• Sémola\n• Crema ligera', nutricion: '510 kcal', alergenos: 'TRIGO, LECHE', instrucciones: 'Microondas: 4 min.' },
+            'tarta_jq': { titulo: 'Tarta Jamón y Queso', ingredientes: '• Masa integral\n• Muzzarella', nutricion: '480 kcal', alergenos: 'TRIGO, LECHE', instrucciones: 'Horno 8 min.' },
+            'carne_horno': { titulo: 'Carne al Horno', ingredientes: '• Cocción lenta\n• Papas rústicas', nutricion: '560 kcal', alergenos: 'S/ALÉRGENOS', instrucciones: 'Microondas: 5 min.' },
+            'chow_fan': { titulo: 'Chow Fan Pollo', ingredientes: '• Arroz salteado\n• Vegetales', nutricion: '505 kcal', alergenos: 'SOJA, HUEVO', instrucciones: 'Microondas: 4 min.' },
+            'pastel_calabaza': { titulo: 'Pastel de Calabaza', ingredientes: '• Pollo desmechado\n• Calabaza', nutricion: '440 kcal', alergenos: 'LECHE', instrucciones: 'Microondas: 5 min.' },
+            'ravioles': { titulo: 'Ravioles Rosa', ingredientes: '• Espinaca y ricota\n• Salsa rosa', nutricion: '490 kcal', alergenos: 'TRIGO, LECHE', instrucciones: 'Microondas: 4 min.' },
+            'suprema': { titulo: 'Suprema Napolitana', ingredientes: '• Pechuga rebozada\n• Muzzarella', nutricion: '570 kcal', alergenos: 'TRIGO, LECHE', instrucciones: 'Microondas: 5 min.' },
+            'burritos': { titulo: 'Burritos de Carne', ingredientes: '• Tortilla trigo\n• Carne y arroz', nutricion: '525 kcal', alergenos: 'TRIGO', instrucciones: 'Microondas: 3 min.' },
+            'empanadas': { titulo: 'Empanadas de Pollo', ingredientes: '• Masa horneada\n• Pollo jugoso', nutricion: '510 kcal', alergenos: 'TRIGO, HUEVO', instrucciones: 'Horno 8 min.' }
+        };
+
+        function openModal(key) {
+            const data = infoPlatos[key];
+            if (!data) return;
+            document.getElementById('modalBody').innerHTML = `
+                <h2 style="color:var(--verde); font-family:'Playfair Display'; margin-bottom:15px;">${data.titulo}</h2>
+                <p><strong>Ingredientes:</strong><br>${data.ingredientes.replace(/\n/g, '<br>')}</p><br>
+                <p><strong>Nutrición:</strong><br>${data.nutricion}</p>
+                <p style="color:red; font-size:0.8rem; margin:10px 0;">CONTIENE: ${data.alergenos}</p>
+                <p><strong>Regeneración:</strong><br>${data.instrucciones}</p>
+            `;
+            document.getElementById('infoModal').style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById('infoModal').style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('infoModal')) closeModal();
+        }
+    </script>
+
+    <script src="script.js?v=4.0"></script>
+</body>
+</html>
